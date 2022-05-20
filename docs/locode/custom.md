@@ -35,17 +35,19 @@ To satisfy the source transforms, each **import** statement should be on a **sin
 
 ### Install
 
-```bash
-$ npm install @servicestack/ui
-```
+Add TypeScript definitions for ServiceStack UI's to your Host project with:
+
+:::sh
+npm install @servicestack/ui
+:::
 
 ### Update
 
 Update your local Type definitions to the latest version with:
 
-```bash
-$ npm install @servicestack/ui@latest
-```
+:::sh
+npm install @servicestack/ui@latest
+:::
 
 ## API Reference
 
