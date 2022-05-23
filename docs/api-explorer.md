@@ -126,6 +126,11 @@ After selecting an API to use from the left-hand menu, you will be greeted with 
 - **Raw** showing raw JSON output in a textarea
 - **Preview** tab displaying results in a human-friendly view
 
+::: info
+The `Raw` response forces a `CamelCase` response since the API Explorer interface needs consistent casing outside your applications default `TextCase`.
+Those using `SnakeCase` or `PascalCase` will see a different response outside of API Explorer.
+:::
+
 <a href="https://blazor-wasm-api.jamstacks.net/ui/QueryBookings?body=preview" class="block my-8 p-4 rounded shadow hover:shadow-lg">
     <img src="/images/apiexplorer/api-form-QueryBookings.png">
 </a>
