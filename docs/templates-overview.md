@@ -3,6 +3,11 @@ title: ServiceStack Project Templates
 slug: templates-overview
 ---
 
+<script setup>
+import JamstackTemplates from "./src/components/JamstackTemplates.vue"
+</script>
+
+
 ServiceStack has its strong foundations as a Web and MQ Services framework whose [easy and versatile HTML support](http://razor.servicestack.net/) makes it the ideal services framework to create Backend Systems and Web APIs, Websites, Single Page Apps, Windows Services, Self-Hosting Console Apps and Rich OSX and Winforms Desktop Apps.
 
 ## x new
@@ -40,6 +45,42 @@ x new
 ## Available Project Templates
 
 ServiceStack is available in a number of popular starting configurations below:
+
+
+## Jamstack
+
+<a href="https://jamstacks.net" class="my-8 py-8 flex justify-center text-gray-600 hover:no-underline" title="jamstacks.net">
+    <div class="flex justify-center items-end p-4 pt-0 border-2 border-solid border-transparent rounded hover:border-indigo-600">
+        <svg viewBox="0 0 256 256" class="w-20 h-20 mr-2" alt="Jamstacks logo"><path d="M128 0C57.221 0 0 57.221 0 128c0 70.778 57.221 128 128 128c70.778 0 128-57.222 128-128V0H128z" fill="#F0047F"></path><path d="M121.04 134.96v93.312c-49.663-2.837-89.64-42.345-93.215-91.81l-.097-1.502h93.312zm90.962 0c-2.6 49.664-38.816 89.64-84.159 93.215l-1.377.097V134.96h85.536zm.112-91.074v85.648h-85.648V43.886h85.648z" fill="#FFF"></path></svg>
+        <h1 class="text-8xl font-bold">Jamstacks</h1>
+        <div class="ml-4 bg-purple-600 text-white py-1 pb-2 px-3 rounded-md text-7xl">.NET</div>
+    </div>
+</a>
+
+
+[Jamstack](https://jamstack.org/what-is-jamstack) (**J**avaScript, **A**PIs, and **M**arkup) is a modern architecture pattern to build fast, secure and easy to scale web applications where pre-rendering content, enhancing with JavaScript and leveraging CDN static hosting results in a highly productive, flexible and performant system that takes advantage of CDN edge caches to deliver **greater performance** & efficiency at **lower cost**. 
+
+### Jamstack Benefits
+
+It's quickly becoming the preferred architecture for modern web apps with 
+[benefits](https://jamstack.org/why-jamstack/) extending beyond performance to improved: 
+
+ - **Security** from a reduced attack surface from hosting read-only static resources and requiring fewer App Servers
+ - **Scale** with non-essential load removed from App Servers to CDN's architecture capable of incredible scale & load capacity
+ - **Maintainability** resulting from reduced hosting complexity and the clean decoupling of UI and server logic
+ - **Portability** with your static UI assets being easily capable from being deployed and generically hosted from any CDN or web server
+ - **Developer Experience** with major JavaScript Frameworks embracing Jamstack in their dev model, libraries & tooling  
+
+Ultimately, it's hosting your App's pre-rendered static UI assets on Content Delivery Network (CDN) edge caches close to users locations that's primarily responsible for its lightning performance.
+
+<h3 class="text-center">Download new C# Jamstack Project Template</h3>
+
+<JamstackTemplates class="pb-8" />
+
+::: info
+An updated list of available Jamstack project templates will be maintained at https://jamstacks.net (built with Vue SSG)
+:::
+
 
 ### Webpack-powered Single Page App Templates
 
