@@ -46,7 +46,6 @@ x new
 
 ServiceStack is available in a number of popular starting configurations below:
 
-
 ## Jamstack
 
 <a href="https://jamstacks.net" class="my-8 py-8 flex justify-center text-gray-600 hover:no-underline" title="jamstacks.net">
@@ -81,6 +80,25 @@ Ultimately, it's hosting your App's pre-rendered static UI assets on Content Del
 An updated list of available Jamstack project templates will be maintained at https://jamstacks.net (built with Vue SSG)
 :::
 
+### Blazor WebAssembly
+
+The [Blazor WebAssembly (WASM)](/templates-blazor) template offers a pure end-to-end integrated C# solution to building a high performance web application with [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor) and ServiceStack. Due to the integrated dev model we've been able to achieve in Blazor it's become **our preferred technology** to use to develop **Line of Business Apps** since it's the only C# Razor solution adopting our preferred [API First Development](/api-first-development) model with Web UIs reusing the same well-defined APIs as Mobile and Desktop Apps.
+
+<iframe width="980" height="551" src="https://www.youtube.com/embed/TIgjMf_vtCI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+### Next.js
+
+For those preferring working with **React**, there's a clear choice in Nextjs.org - currently the flagship & [most popular Jamstack](https://jamstack.org/generators/) framework backed by the folks over at [Vercel](https://vercel.com), where it enjoys deep engineering talent committed to maintaining and continually improving it, so you can be confident in the longevity of the technology and the React framework maintained by [Meta](https://meta.com) (Facebook).
+
+<iframe width="980" height="551" src="https://www.youtube.com/embed/3pPLRyPsO5A" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+### Vite
+
+Vite is being [built for speed](https://vitejs.dev/guide/why.html) in the modern era and takes advantage of modern browser features like native ES modules support to remove bundling entirely during development and adopts performance leading technologies like [esbuild](https://github.com/evanw/esbuild) to pre-bundle dependencies and [transpile TypeScript](https://vitejs.dev/guide/features.html#typescript) which is able to do **20-30x** faster than TypeScript's own `tsc` compiler.
+
+Ultimately its architectural choices allows Vite to deliver Lightning Fast **Hot Module Reload** (HMR) to remain at the developer-experience forefront of modern web development serving a [growing ecosystem](https://vitejs.dev/guide/) of frameworks with a rich typed suite of [Universal Plugins](https://vitejs.dev/plugins/).
+
+<iframe width="980" height="551" src="https://www.youtube.com/embed/D-rU0lU_B4I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### Webpack-powered Single Page App Templates
 
