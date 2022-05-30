@@ -538,7 +538,6 @@ An [example of this](https://github.com/NetCoreApps/NorthwindAuto/blob/master/Co
 `IsCrudCreateOrUpdate("Employee")` Metadata Type extension method to target its `CreateEmployee` and `UpdateEmployee` CRUD APIs: 
 
 ```csharp
-```csharp
 TypeFilter = (type, req) =>
 {
     if (type.Name == "Employee")
