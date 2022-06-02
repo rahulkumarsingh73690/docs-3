@@ -129,7 +129,7 @@ Exclude **properties** from being listed in OpenAPI Schema Body with:
 To exclude entire Services from showing up in OpenAPI or any other Metadata Services (i.e. Metadata Pages, Postman, NativeTypes, etc), annotate **Request DTO's** with:
 
 ```csharp
-[Exclude(Feature.Metadata)]
+[ExcludeMetadata]
 public class MyRequestDto { ... }
 ```
 
