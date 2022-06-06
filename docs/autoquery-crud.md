@@ -161,7 +161,7 @@ public class MyCrudServices : Service
 
 ### Custom implementations using OrmLite Typed APIs
 
-Although it's not strictly necessary to use `IAutoQueryDb` APIs and can instead use OrmLite to perform
+It's not strictly necessary to use `IAutoQueryDb` APIs to implement custom AutoQuery implementations as you could instead use OrmLite to implement similar CRUD behavior, e.g:
 
 ```csharp
 public class MyCrudServices : Service
@@ -190,7 +190,8 @@ public class MyCrudServices : Service
 }
 ```
 
-// Async
+Async version:
+
 ```csharp
 public class MyCrudServices : Service
 {
