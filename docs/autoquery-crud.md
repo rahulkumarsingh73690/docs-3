@@ -23,7 +23,7 @@ the existing AutoQuery functionality and enhance it with custom behavior (e.g. i
 entire implementation can be replaced without breaking its design contract & existing client integrations, should it be necessary to
 reimplement later if the Service needs to be constructed to use alternative data sources.
 
-### Rapidly develop data-driven systems
+## Rapidly develop data-driven systems
 
 As AutoQuery lets you declaratively develop Services by just defining their API Contract with POCO DTOs you're able to develop entire 
 data-driven systems in a fraction of the time that it would take to implement them manually. In addition AutoQuery Services are semantically
@@ -37,7 +37,7 @@ For a sample of the productivity enabled checkout the [Bookings CRUD](https://gi
 
 <iframe width="896" height="525" src="https://www.youtube.com/embed/XpHAaCTV7jE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### Creating AutoQuery CRUD Services
+## Creating AutoQuery CRUD Services
 
 Just like [AutoQuery](/autoquery-rdbms), you just need to provide the typed Request DTOs definition for your DB Table APIs and 
 AutoQuery automatically provides the implementation for the Service. 
@@ -133,7 +133,108 @@ public class DeleteRockstar : IDeleteDb<Rockstar>, IReturnVoid
 
 and to Query the Rockstar table you have the [full featureset of AutoQuery](/autoquery-rdbms) for a complete set of CRUD Services without needing to provide any implementations.
 
-### AutoQuery CRUD Attributes
+## Custom AutoQuery CRUD Implementation
+
+Just as you can create [Custom AutoQuery Implementations](/autoquery-rdbms.html#custom-autoquery-implementations) to override the default AutoQuery behavior
+you can also override AutoQuery CRUD implementations by creating implementations with AutoQuery CRUD Request DTOs and calling the relevate `IAutoQueryDb` method, e.g:
+
+```csharp
+public class MyCrudServices : Service
+{
+    public IAutoQueryDb AutoQuery { get; set; }
+
+    public object Post(CreateRockstar request) => AutoQuery.Create(request, base.Request);
+    public object Put(UpdateRockstar request) => AutoQuery.Update(request, base.Request);
+    public object Delete(DeleteRockstar request) => AutoQuery.Delete(request, base.Request);
+}
+
+// Async
+public class MyCrudServices : Service
+{
+    public IAutoQueryDb AutoQuery { get; set; }
+
+    public Task<object> Post(CreateRockstar request) => AutoQuery.CreateAsync(request, base.Request);
+    public Task<object> Put(UpdateRockstar request) => AutoQuery.UpdateAsync(request, base.Request);
+    public Task<object> Delete(DeleteRockstar request) => AutoQuery.DeleteAsync(request, base.Request);
+}
+```
+
+### Custom implementations using OrmLite Typed APIs
+
+Although it's not strictly necessary to use `IAutoQueryDb` APIs and can instead use OrmLite to perform
+
+```csharp
+public class MyCrudServices : Service
+{
+    public object Post(CreateRockstar request) 
+    {
+        var id = (int) Db.Insert(request.ConvertTo<Rockstar>(), selectIdentity:true);
+        return new CreateRockstarResponse {
+            Id = id
+        };
+    }
+
+    public object Put(UpdateRockstar request)
+    {
+        Db.UpdateNonDefaults(request.ConvertTo<Rockstar>(), x => x.Id == request.Id);
+        return new UpdateRockstarResponse {
+            Id = id,
+            Result = Db.SingleById<Rockstar>(id),
+        };
+    }
+    
+    public void Delete(DeleteRockstar request)
+    {
+        Db.DeleteById<Rockstar>(request.Id);
+    }
+}
+```
+
+// Async
+```csharp
+public class MyCrudServices : Service
+{
+    public async Task<object> Post(CreateRockstar request) 
+    {
+        var id = (int) await Db.InsertAsync(request.ConvertTo<Rockstar>(), selectIdentity:true);
+        return new CreateRockstarResponse {
+            Id = id
+        };
+    }
+
+    public object Put(UpdateRockstar request)
+    {
+        await Db.UpdateNonDefaultsAsync(request.ConvertTo<Rockstar>(), x => x.Id == request.Id);
+        return new UpdateRockstarResponse {
+            Id = id,
+            Result = await Db.SingleByIdAsync<Rockstar>(id),
+        };
+    }
+    
+    public Task Delete(DeleteRockstar request)
+    {
+        await Db.DeleteByIdAsync<Rockstar>(request.Id);
+    }
+}
+```
+
+The above are equivalents of typical AutoQuery CRUD APIs using OrmLite directly, however if the AutoQuery APIs includes [POCO references](/ormlite/reference-support), you'll need to OrmLite's `Save()` API to save the reference complex types as well, e.g:
+
+```csharp
+public class MyCrudServices : Service
+{
+    public object Post(CreateRockstar request) 
+    {
+        var row = request.ConvertTo<Rockstar>();
+        Db.Save(row, references: true);
+        return new CreateRockstarResponse {
+            Id = row.Id
+        };
+    }
+}
+```
+
+## AutoQuery CRUD Attributes
 
 AutoQuery CRUD extends existing [querying functionality in AutoQuery](/autoquery-rdbms) with additional features covering common functionality in CRUD operations:
 
