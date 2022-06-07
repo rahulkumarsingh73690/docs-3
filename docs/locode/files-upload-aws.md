@@ -1,8 +1,8 @@
 ---
-title: AWS S3 FilesUploadFeature
+title: Managed AWS S3 File Uploads
 ---
 
-The FileUploadFeature plugin supports having multiple `UploadLocations` configured at once, and each UploadLocation can use a different implementation of the `IVirtualFiles` interface.
+The `FileUploadFeature` plugin supports having multiple `UploadLocations` configured at once, and each UploadLocation can use a different implementation of the `IVirtualFiles` interface.
 
 This can be added in your AppHost Configure method or IHostingStartup ConfigureAppHost method. Each UploadLocation requires a Name string and an instance of an IVirtualFiles provider.
 
