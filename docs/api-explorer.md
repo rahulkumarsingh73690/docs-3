@@ -116,6 +116,9 @@ Once signed in, API Explorer expands to include all the protected APIs the signe
 ::: info
 API Explorer is powered by the rich API metadata provided by the `MetadataFeature` and can be customized through the `UiFeature` plugin. 
 Removing either plugin disables API Explorer.
+```csharp
+Plugins.RemoveAll(x => x is UiFeature);
+```
 :::
 
 ## API Tab
