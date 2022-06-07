@@ -46,56 +46,6 @@ layout: default
             Send a pull request to modify markdown in our GitHub Docs Repo.
         </p>
     </div>
-    <div class="w-full sm:w-1/2">
-        <h3 class="text-2xl">
-            <a href="https://github.com/ServiceStack/issues">
-                <i class="fab fa-github"></i>
-                Report an issue</a>
-        </h3>
-        <p class="pr-2">
-            If you've found an issue in any of our libraries, please report it to our
-            GitHub Issues repository.
-        </p>
-    </div>
-    <div class="w-full sm:w-1/2">
-        <h3 class="text-2xl">
-            <a class="block" href="https://servicestack.net/ideas">
-                <i class="far fa-comments"></i>
-                Request a Feature</a>
-        </h3>
-        <p class="pr-2">
-            Request a new Feature or additional docs, samples and use-cases you would like to see in
-            ServiceStack.
-        </p>
-    </div>                        
-    <div class="w-full sm:w-1/2">
-        <h3 class="text-2xl">
-            <a class="block" href="https://forums.servicestack.net">
-                <i class="fab fa-discourse"></i>
-                Customer Support Forums
-            </a>
-        </h3>
-        <p class="pr-2">
-            We're here to help! Active Customers can access technical support from our Customer Forums.
-        </p>
-        <p class="pr-2">
-            Developers emails <b>needs to match</b> an account's email or a registered support contact.
-        </p>
-    </div>
-    <div class="w-full sm:w-1/2">
-        <h3 class="text-2xl">
-            <a class="block" href="https://stackoverflow.com/questions/ask?tags=servicestack">
-                <i class="fab fa-stack-overflow"></i>
-                Ask on StackOverflow</a>
-        </h3>
-        <p class="pr-2">
-            Receive answers from ServiceStack and other developers on StackOverflow.
-        </p>
-        <p class="pr-2">
-            StackOverflow questions with the <code class="bg-blue-50">servicestack</code> hash tag
-            is frequently monitored by ServiceStack developers.
-        </p>
-    </div>
 </div>
 <div class="my-20">
     <div class="my-10">
@@ -209,6 +159,103 @@ layout: default
         </div>
     </div>
 </div>
+
+## Community Support
+
+Trial & Free License Users can access community support options:
+
+<div class="flex flex-wrap">
+    <div class="w-full sm:w-1/2">
+        <h3 class="text-2xl">
+            <a class="block" href="https://servicestack.net/ask">
+                <i class="fab fa-github"></i>
+                Ask on ServiceStack/Discuss</a>
+        </h3>
+        <p class="pr-2">
+            Receive answers from ServiceStack community in the new
+            ServiceStack/Discus Q&A Community Support category on GitHub Discussions.
+        </p>
+    </div>
+    <div class="w-full sm:w-1/2">
+        <h3 class="text-2xl">
+            <a class="block" href="https://stackoverflow.com/questions/ask?tags=servicestack">
+                <i class="fab fa-stack-overflow"></i>
+                Ask on StackOverflow</a>
+        </h3>
+        <p class="pr-2">
+            Receive answers from the .NET community on StackOverflow.
+        </p>
+        <p class="pr-2">
+            StackOverflow questions with the <code class="bg-blue-50">servicestack</code> hash tag
+            is frequently monitored by ServiceStack developers.
+        </p>
+    </div>
+</div>
+
+## Commercial Support
+
+Registered developers with an active Commercial License can access technical support directly from ServiceStack engineers via the commercial
+support channels below:
+
+<div class="flex flex-wrap">
+    <div class="w-full sm:w-1/2">
+        <h3 class="text-2xl">
+            <a class="block" href="https://forums.servicestack.net">
+                <i class="fab fa-discourse"></i>
+                Customer Support Forums
+            </a>
+        </h3>
+        <p class="pr-2">
+            We're here to help! Active Customers can access technical support from our Customer Forums.
+        </p>
+        <p class="pr-2">
+            Developers emails <b>needs to match</b> an account's email or a 
+            <a href="https://account.servicestack.net/account/support">
+                registered support contact.
+            </a>
+        </p>
+    </div>
+    <div class="w-full sm:w-1/2">
+        <h3 class="text-2xl">
+            <a href="https://github.com/ServiceStack/issues">
+                <i class="fab fa-github"></i>
+                Report an issue</a>
+        </h3>
+        <p class="pr-2">
+            If you've found an issue in any of our libraries, please report it to our
+            GitHub Issues repository.
+        </p>
+    </div>
+    <div class="w-full sm:w-1/2">
+        <h3 class="text-2xl">
+            <a class="block" href="https://servicestack.net/ideas">
+                <i class="far fa-comments"></i>
+                Request a Feature</a>
+        </h3>
+        <p class="pr-2">
+            Request a new Feature or additional docs, samples and use-cases you would like to see in
+            ServiceStack.
+        </p>
+    </div>                        
+    <div class="w-full sm:w-1/2">
+        <h3 class="text-2xl">
+            <a class="block" href="https://servicestack.net/ideas">
+                <i class="far fa-life-ring"></i>
+                Premium Support</a>
+        </h3>
+        <p class="pr-2">
+            Need direct, private support from ServiceStack expert engineers?
+        </p>
+        <p class="pr-2">
+            Go to 
+            <a href="https://account.servicestack.net/account/support">
+                your Support page 
+            </a>
+            to access your premium support options.
+        </p>
+    </div>                        
+</div>
+
 
 ## ServiceStack Community
 
