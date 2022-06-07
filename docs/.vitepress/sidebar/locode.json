@@ -55,12 +55,29 @@
       ]
   },
   {
-      "text": "Features",
+      "text": "File Management",
       "children": [
           {
-              "text": "File Management",
+              "text": "Overview",
               "link": "/locode/files"
           },
+          {
+              "text": "File System",
+              "link": "/locode/files-upload-filesystem"
+          },
+          {
+              "text": "AWS",
+              "link": "/locode/files-upload-aws"
+          },
+          {
+              "text": "Azure",
+              "link": "/locode/files-upload-azure"
+          }
+      ]
+  },
+  {
+      "text": "Features",
+      "children": [
           {
               "text": "Auditing",
               "link": "/locode/auditing"
