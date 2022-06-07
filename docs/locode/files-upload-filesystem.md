@@ -1,5 +1,5 @@
 ---
-title: Managed File System File Uploads
+title: File System Managed File Uploads
 ---
 
 The `FileUploadFeature` plugin supports having multiple `UploadLocations` configured at once, and each UploadLocation can use a different implementation of the `IVirtualFiles` interface.
