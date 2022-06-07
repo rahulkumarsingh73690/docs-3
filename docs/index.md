@@ -162,7 +162,7 @@ layout: default
 
 ## Community Support
 
-Trial & Free License Users can access community support options:
+Trial & Free License Users can access the community support options below:
 
 <div class="flex flex-wrap">
     <div class="w-full sm:w-1/2">
