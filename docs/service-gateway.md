@@ -79,13 +79,11 @@ Below is an example of using both API's:
 ```csharp
 public object Any(GetCustomerOrders request)
 {
-    using (var orderService = base.ResolveService<OrderService>())
-    {
-        return new GetCustomerOrders {
-            Customer = (Customer)base.ExecuteRequest(new GetCustomer {Id=request.Id}),
-            Orders = orderService.Any(new QueryOrders { CustomerId = request.Id })
-        };
-    }
+    using var orderService = base.ResolveService<OrderService>();
+    return new GetCustomerOrders {
+        Customer = (Customer)base.ExecuteRequest(new GetCustomer { Id = request.Id }),
+        Orders = orderService.Any(new QueryOrders { CustomerId = request.Id })
+    };
 }
 ```
 
