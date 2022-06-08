@@ -5,6 +5,11 @@ title: Managed Files Uploads
 The `FileUploadFeature` plugin is a high-level ServiceStack feature that allows you to configure multiple managed
 file upload locations within the same App that you can declaratively bind to different APIs to use. 
 
+<div class="py-8 max-w-7xl mx-auto px-4 sm:px-6">
+    <iframe class="video-hd" width="560" height="315" src="https://www.youtube.com/embed/5sd00MzHpaU" title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 Upload Locations can be configured to use any of the supported 
 [Writable Virtual File Systems](/virtual-file-system#writable-virtual-file-system) including:
 
