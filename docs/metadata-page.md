@@ -188,3 +188,11 @@ Hovering over the key will show which also permissions or roles the Service need
 This information is also shown the metadata detail pages which will list which permissions/roles are required (if any), e.g:
 
 ![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/metadata-auth.png)
+
+## DTOs in multiple languages
+
+Whilst [API Explorer](/api-explorer) will continue to receive most of our efforts for providing a built-in UI/UX around ServiceStack APIs, we've also added the ability to browse an API Contract in the viewers preferred language in the existing API **/metadata** pages, e.g:
+
+[![](/images/apiexplorer/metadata-languages.png)](https://blazor-wasm-api.jamstacks.net/json/metadata?op=CreateBooking&lang=csharp)
+
+The difference between them is that API Explorer is an entirely client rendered SPA that only supports modern browsers, whilst the **/metadata** pages are server rendered and should be visible in all browsers.

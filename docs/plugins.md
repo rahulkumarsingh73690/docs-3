@@ -65,7 +65,30 @@ if ((Feature.Csv & config.EnableFeatures) != Feature.Csv)
 
 Which you now also have an opportunity to also do in your AppHost Configure() start-up script yourself - if you want to remove or customize any pre-loaded plugins.
 
-#### Resolving Plugins
+### Configuring Plugins
+
+The `ConfigurePlugin` API lets us avoid time-coupling between plugin registrations by letting us configure plugins before they've been added by registering a lazy callback invoked just before a plugin is registered. 
+
+As it's resilient against ordering, it's the recommended way to **configure any plugin** it doesn't register, here's some usage examples:
+
+```csharp
+// App's can use to change logo API Explorer uses
+appHost.ConfigurePlugin<UiFeature>(feature => {
+    feature.Info.BrandIcon.Uri = "https://example.org/logo.svg";
+});
+
+// OpenApiFeature uses to add the /swagger-ui link to /metadata page
+appHost.ConfigurePlugin<MetadataFeature>(
+    feature => feature.AddPluginLink(swaggerUrl, "Swagger UI"));
+
+// GrpcFeature uses to add a link to gRPC .proto APIs on /metadata page
+appHost.ConfigurePlugin<MetadataFeature>(
+    feature => feature.AddPluginLink("types/proto", "gRPC .proto APIs"));
+```
+
+`ConfigurePlugin` is invoked just before a plugin is registered, there's also `PostConfigurePlugin` to configure a plugin just after it's registered and `AfterPluginLoaded` invoked after any of its `IPostInitPlugin` callbacks have completed.
+
+### Resolving Plugins
 
 You can easily use LINQ to fetch any specific plugin:
 

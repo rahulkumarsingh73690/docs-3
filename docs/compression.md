@@ -83,3 +83,62 @@ is already compressing static files in which case you won't want to configure Se
 
 No compression is added when running ServiceStack in a self-host, which will benefit from enabling Static File Compression.
 
+
+## Brotli Compression
+
+**.NET 6** Apps have access to is .NET Core's `BrotliStream` which is fully supported throughout ServiceStack, e.g. in Cached & Compressed Responses as well as sending compressed Request payloads in Service Clients.
+
+The Brotli implementation is encapsulated within ServiceStack's compression abstractions whose implementations are contained within:
+
+ - **BrotliCompressor** - Brotli (br)
+ - **DeflateCompressor** - Deflate (deflate)
+ - **GZipCompressor** - GZIP (gzip)
+
+Which all implement the same substitutable interface:
+
+```csharp
+public interface IStreamCompressor
+{
+    string Encoding { get; }
+    
+    byte[] Compress(string text, Encoding? encoding = null);
+    byte[] Compress(byte[] bytes);
+    Stream Compress(Stream outputStream, bool leaveOpen=false);
+
+    string Decompress(byte[] zipBuffer, Encoding? encoding = null);
+        
+    Stream Decompress(Stream zipBuffer, bool leaveOpen=false);
+
+    byte[] DecompressBytes(byte[] zipBuffer);
+}
+```
+
+That are managed with `StreamCompressors` in the **ServiceStack.Client** package:
+
+```csharp
+public static class StreamCompressors
+{
+    // Is there a compressor registered with this encoding?   
+    public static bool SupportsEncoding(string? encoding);
+
+    // return the registered IStreamCompressor implementation for for this
+    public static IStreamCompressor? Get(string? encoding);
+    
+    // Assert there exists a IStreamCompressor for this encoding
+    public static IStreamCompressor GetRequired(string encoding);
+
+    // Register a new compressor for a specific encoding (defaults: gzip, deflate, br*) .NET6+
+    public static void Set(string encoding, IStreamCompressor compressor);
+
+    // Remove compression support for this encoding
+    public static bool Remove(string encoding);
+}
+```
+
+Containing pre-registered implementations of all popular Brotli, Deflate & gzip HTTP Compression algorithms so there's typically no need to add any yourself.
+
+The preferred compression implementation for a request can be retrieved with `IRequest.GetCompressor()` which determines the implementation to use based on the overridable `GetCompressionType(IRequest request)` method in your AppHost.
+
+### Brotli disabled for Firefox
+
+Brotli is currently not returned for Firefox browsers (by **UserAgent** detection in `AppHost.GetCompressionType()`) which for a yet to be determined reason is the only modern browser that doesn't support .NET's `BrotliStream` output. We'll continue to investigate and remove the restriction when resolved.

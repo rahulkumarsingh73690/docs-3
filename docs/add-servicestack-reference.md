@@ -489,6 +489,27 @@ public static enum DayOfWeek
 }
 ```
 
+### Force Include Types in Native Types DTOs
+
+ServiceStack's Add ServiceStack Reference feature carefully limits which DTOs it generates based on just the DTOs needed by different clients packages to call APIs. There's many reasons why Types aren't generated, e.g. they already exist in service client library, the APIs have [Visibility or Access restrictions](/auth-restricting-services), their built-in APIs purposefully hidden by ServiceStack to reduce bloat, etc.
+
+We can override these rules for specific Types by including them in `Metadata.ForceInclude`, e.g:
+
+```csharp
+public override void Configure(Container container)
+{
+    Metadata.ForceInclude = new() {
+        typeof(MetadataApp),
+        typeof(AppMetadata),
+        typeof(AdminQueryUsers),
+        typeof(AdminGetUser),
+        typeof(AdminCreateUser),
+        typeof(AdminUpdateUser),
+        typeof(AdminDeleteUser),
+    };
+}
+```
+
 ### Enable Versioning
 
 You can implement our [recommended Versioning strategy](http://stackoverflow.com/a/12413091/85785) 

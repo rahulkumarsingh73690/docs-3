@@ -407,6 +407,18 @@ using (JsConfig.CreateScope("IncludeNullValues,EDV,dh:ut"))
 
 This feature is used to provide a number of different [JSON customizations in ServiceStack Services](/customize-json-responses).
 
+### Scoped Extension Methods
+
+The convenience serialization methods `.ToJson()`, `.ToJsv()`, `.ToCsv()` also accept a lambda for configuring a custom configuration scope to simplify its usage, e.g:
+
+```csharp
+var json = dto.ToJson(config => config.TextCase = TextCase.SnakeCase);
+
+// Equivalent To:
+using var scope = JsConfig.With(new Config { TextCase = TextCase.Default });
+var json = response.ToJson();
+```
+
 ### Type Configuration
 
 If you can't change the definition of a Type (e.g. because its in the BCL), you can specify a custom serialization /

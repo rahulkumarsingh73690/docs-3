@@ -6,8 +6,7 @@ This supports [transparently auto refreshing access tokens](/jwt-authprovider.ht
 by default as the server will rotate JWT Access Token Cookies which expire before the Refresh Token expiration.
 
 The alternative configuration of using explicit JWT Bearer Tokens is also supported in all smart, generic Service Clients for all [Add ServiceStack Reference](/add-servicestack-reference) languages which enable a nicer (i.e. maintenance-free) development experience with all Service Clients
-including built-in support for Refresh Token Cookies where they’ll automatically fetch new JWT Bearer Tokens &
-transparently Auto Retry Requests on 401 Unauthorized responses:
+automatically supports fetching new JWT Bearer Tokens & transparently Auto Retry Requests on **401 Unauthorized** responses:
 
 #### C#, F# & VB .NET Service Clients
 

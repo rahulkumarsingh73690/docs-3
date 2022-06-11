@@ -82,6 +82,17 @@ and more coarse-grained APIs as additional results can be added to the Response 
 
 You'll also need to follow the above convention if you also wanted to [support SOAP endpoints](/soap-support) or if you want to be able to handle Typed [Response Messages in MQ Services](/messaging#message-workflow).
 
+### All APIs have a preferred default method
+
+Like the `Send*` APIs before them, both [API Explorer](/api-explorer) and the new [`Api*` methods](/csharp-client.html#high-level-api-and-apiasync-methods) send API requests using an APIs **preferred HTTP Method** which can be defined either:
+
+ - Implicitly when using AutoQuery/CRUD Request DTOs
+ - Explicitly annotating Request DTOs with `IGet`, `IPost`, etc. **IVerb** interface markers
+ - Using the Services **Verb()** implementation method if not using **Any()**
+ - Using the first verb specified in its user-defined `[Route]` attribute (if any)
+
+If the HTTP Method can't be inferred, it defaults to using HTTP **POST**. But as good API documentation practice, we recommend specifying the HTTP Method each API should use, preferably using the `IVerb` interface marker, so it's embedded into the APIs Services Contract shared with clients (not required for AutoQuery APIs).
+
 ## ServiceStack's API Design
 
 We'll walk through a few examples here but for a more detailed look into the usages and capabilities of ServiceStack's API design checkout its
