@@ -669,7 +669,135 @@ Whilst a simple feature, it enables treating your remote services as a message-b
 [yielding its many inherent advantages](/advantages-of-message-based-web-services#advantages-of-message-based-designs) 
 where your Application API's need only pass Request DTO models around to be able to invoke remote Services, decoupling the Service Request from its implementation which can be now easily managed by a high-level adapter that takes care of proxying the Request to the underlying Service Client. The adapter could also add high-level functionality of it's own including auto retrying of failed requests, generic error handling, logging/telemetrics, event notification, throttling, offline queuing/syncing, etc.
 
-### File Uploads
+## File Uploads
+
+File uploads can be accessed within Service implementations from the `Request.Files` collection which you can write to the registered
+[Writable Virtual Files Provider](/virtual-file-system) with:
+
+```csharp
+[Route("/files/upload")]
+public class UploadFile {}
+
+public class UploadFileService : Service
+{
+    readonly string UploadsDir = "uploads";
+
+    public object Post(UploadFile request)
+    {
+        var uploadedFile = base.Request.Files[0];
+        VirtualFiles.WriteFile(UploadsDir.CombineWith(uploadedFile.FileName), uploadedFile.InputStream);
+        return new FileUploadResponse { ... };
+    }
+}
+```
+
+Alternatively [Managed File Uploads](/locode/files) can provide a more effortless solution for configuring custom validation, multiple upload locations
+and also includes File APIs to access & manage file uploads.
+
+### Uploading File with Request
+
+The Service Clients utilize standard [HTTP multipart/form-data](https://www.ietf.org/rfc/rfc2388.txt) Content-Type for 
+uploading files as demonstrated in Talent Blazor's
+[FileUploadTests.cs](https://github.com/NetCoreApps/TalentBlazor/blob/main/TalentBlazor.Tests/FileUploadTests.cs)
+which uploads a single attachment when creating a Contact with a Profile Image and multiple file attachments when
+submitting a Job Application:
+
+```csharp
+var profileImg = await ProfileImageUrl.GetStreamFromUrlAsync();
+var contact = await client.PostFileWithRequestAsync<Contact>(profileImg, "cody-fisher.png", 
+    new CreateContact
+    {
+        FirstName = "Cody",
+        LastName = "Fisher",
+        Email = "cody.fisher@gmail.com",
+        JobType = "Security",
+        PreferredLocation = "Remote",
+        PreferredWorkType = EmploymentType.FullTime,
+        AvailabilityWeeks = 1,
+        SalaryExpectation = 100_000,
+        About = "Lead Security Associate",
+    }, fieldName:nameof(CreateContact.ProfileUrl));
+
+// contact.ProfileUrl = /profiles/cody-fisher.png
+
+var uploadedImage = await client.BaseUri.CombineWith(contact.ProfileUrl).GetStreamFromUrlAsync();
+var coverLetter = new FileInfo($"{AppData}/sample_coverletter.pdf");
+var resume = new FileInfo($"{AppData}/sample_resume.pdf");
+
+var attachmentsField = nameof(CreateJobApplication.Attachments);
+var uploadAttachments = new UploadFile[] {
+    new(coverLetter.Name, coverLetter.OpenRead(), attachmentsField),
+    new(resume.Name, coverLetter.OpenRead(), attachmentsField),
+    new(contact.ProfileUrl.LastRightPart('/'), uploadedImage, attachmentsField),
+};
+
+var jobApp = await client.PostFilesWithRequestAsync<JobApplication>(new CreateJobApplication {
+        JobId = 1,
+        AppliedDate = DateTime.UtcNow,
+        ContactId = contact.Id,
+    }, uploadAttachments);
+
+uploadAttachments.Each(x => x.Stream.Dispose());
+```
+
+This example also shows APIs are able to submit files from any `Stream` that can be sourced from anywhere,
+including the HTTP Response stream of a Remote URI or files from a local hard drive. 
+
+### Using HttpClient MultipartFormDataContent
+
+The [.NET 6+ JsonApiClient](/csharp-client#jsonapiclient) lets us provide an even more flexible approach by utilizing 
+`MultipartFormDataContent()` which we've enhanced with high-level extension methods to enable a Fluent API for constructing 
+custom API Requests populated from multiple sources, which can be sent using its `ApiForm*` methods:
+
+```csharp
+var profileImg = await ProfileImageUrl.GetStreamFromUrlAsync();
+using var createContact = new MultipartFormDataContent()
+    .AddParams(new CreateContact
+    {
+        FirstName = "Cody",
+        LastName = "Fisher",
+        Email = "cody.fisher@gmail.com",
+        JobType = "Security",
+        PreferredLocation = "Remote",
+        PreferredWorkType = EmploymentType.FullTime,
+        AvailabilityWeeks = 1,
+        SalaryExpectation = 100_000,
+        About = "Lead Security Associate",
+    })
+    .AddFile(nameof(CreateContact.ProfileUrl), "cody-fisher.png", profileImg);
+
+var contactApi = await client.ApiFormAsync<Contact>(typeof(CreateContact).ToApiUrl(), createContact);
+// contactApi.Succeeded = true
+var contact = contactApi.Response!;
+// contact.ProfileUrl   = /profiles/cody-fisher.png
+
+using var uploadedImage = await client.BaseUri.CombineWith(contact.ProfileUrl).GetStreamFromUrlAsync();
+var coverLetter = new FileInfo($"{AppData}/sample_coverletter.pdf");
+var resume = new FileInfo($"{AppData}/sample_resume.pdf");
+
+var attachmentsField = nameof(CreateJobApplication.Attachments);
+var createJobApp = new MultipartFormDataContent()
+    .AddParams(new CreateJobApplication {
+        JobId = 1,
+        AppliedDate = DateTime.UtcNow,
+        ContactId = contact.Id,
+    })
+    .AddFile(attachmentsField, coverLetter)
+    .AddFile(attachmentsField, resume)
+    .AddFile(attachmentsField, contact.ProfileUrl.LastRightPart('/'), uploadedImage);
+
+var jobAppApi = await client.ApiFormAsync<JobApplication>(
+    typeof(CreateJobApplication).ToApiUrl(), createJobApp);
+// jobAppApi.Succeeded = true
+var jobApp = jobAppApi.Response!;
+```
+
+::: tip
+All `JsonApiClient` Async APIs also have 
+[safe sync equivalents](/csharp-client#safe-sync-httpclient-apis) when access outside an async method is needed 
+:::
+
+### Upload a single File
 
 You can use the `PostFile` API to upload a single File, with the Route of the Service you want to call,
 the name of the file and the `Stream` of its contents, e.g:
@@ -716,7 +844,7 @@ public class FileUpload : IReturn<FileUploadResponse>
     public DateTime CreatedDate { get; set; }
 }
 
-var client = new JsonHttpClient(baseUrl);
+var client = new JsonApiClient(baseUrl);
 var fileInfo = new FileInfo(filePath);
 using var fileStream = fileInfo.OpenRead();
 var request = new FileUpload {
@@ -748,20 +876,85 @@ var response = client.PostFilesWithRequest<MultipleFileUploadResponse>(
     });
 ```
 
-Example using only a Typed Request DTO. The `JsonHttpClient` also includes async equivalents for each of the 
+Example using only a Typed Request DTO. The `JsonApiClient` also includes async equivalents for each of the 
 `PostFilesWithRequest` APIs:
 
 ```csharp
 using var stream1 = uploadFile1.OpenRead();
 using var stream2 = uploadFile2.OpenRead();
 
-var client = new JsonHttpClient(baseUrl);
+var client = new JsonApiClient(baseUrl);
 var response = await client.PostFilesWithRequestAsync<MultipleFileUploadResponse>(
     new MultipleFileUpload { CustomerId = 123, CustomerName = "Foo,Bar" },
     new[] {
         new UploadFile("upload1.png", stream1),
         new UploadFile("upload2.png", stream2),
     });
+```
+
+### Versatile Multi Part Content Type APIs
+
+[AutoQueryCrudTests.References.cs](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/tests/ServiceStack.WebHost.Endpoints.Tests/AutoQueryCrudTests.References.cs)
+showcases how we can take advantage of `MultipartFormDataContent` to construct custom requests using a combination
+of different Content Type sources, including single and multiple file attachments within a single request:
+
+```csharp
+public class MultipartRequest : IPost, IReturn<MultipartRequest>
+{
+    public int Id { get; set; }
+    public string String { get; set; }
+    
+    // Complex types sent as JSV by default
+    public Contact Contact { get; set; }
+    
+    [MultiPartField(MimeTypes.Json)]
+    public PhoneScreen PhoneScreen { get; set; }
+    
+    [MultiPartField(MimeTypes.Csv)]
+    public List<Contact> Contacts { get; set; }
+    
+    [UploadTo("profiles")]
+    public string ProfileUrl { get; set; }
+    
+    [UploadTo("applications")]
+    public List<UploadedFile> UploadedFiles { get; set; } 
+}
+```
+
+[Complex types are sent using JSV](/serialization-deserialization) by default which is a
+more human & wrist-friendly and more efficient format than JSON, however we could also take advantage of the flexibility
+in HTTP **multipart/form-data** requests to construct an HTTP API Request utilizing multiple Content-Type's optimized
+for the data we're sending, e.g:
+
+- JSON/JSV more optimal for hierarchical graph data 
+- CSV more optimal for sending tabular data
+- File Uploads are more optimal for sending large files
+
+To facilitate this in our Server APIs we can use `[MultiPartField]` attribute to instruct ServiceStack which registered
+serializer it should use to deserialize the form-data payload, whilst we can continue using the generic `[UploadTo]`
+attribute in normal APIs to handle our File Uploads and populate the Request DTO with the uploaded file metadata.
+
+Our `MultipartFormDataContent` extension methods simplifies our client logic by allowing us to easily populate this 
+custom request in a single Fluent construction expression:
+
+```csharp
+using var content = new MultipartFormDataContent()
+    .AddParam(nameof(MultipartRequest.Id), 1)
+    .AddParam(nameof(MultipartRequest.String), "foo")
+    .AddParam(nameof(MultipartRequest.Contact), 
+        new Contact { Id = 1, FirstName = "First", LastName = "Last" })
+    .AddJsonParam(nameof(MultipartRequest.PhoneScreen), 
+        new PhoneScreen { Id = 3, JobApplicationId = 1, Notes = "The Notes"})
+    .AddCsvParam(nameof(MultipartRequest.Contacts), new[] {
+        new Contact { Id = 2, FirstName = "First2", LastName = "Last2" },
+        new Contact { Id = 3, FirstName = "First3", LastName = "Last3" },
+    })
+    .AddFile(nameof(MultipartRequest.ProfileUrl), "profile.txt", file1Stream)
+    .AddFile(nameof(MultipartRequest.UploadedFiles), "uploadedFiles1.txt", file2Stream)
+    .AddFile(nameof(MultipartRequest.UploadedFiles), "uploadedFiles2.txt", file3Stream));
+
+var api = await client.ApiFormAsync<MultipartRequest>(typeof(MultipartRequest).ToApiUrl(), content);
+if (!api.Succeeded) api.Error.PrintDump();
 ```
 
 ## Capture HTTP Headers in .NET Service Clients

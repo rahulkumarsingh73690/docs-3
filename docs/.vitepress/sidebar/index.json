@@ -219,39 +219,6 @@
     ]
   },
   {
-    "text": "Server Events",
-    "children": [
-      {
-        "text": "Overview",
-        "link": "/server-events"
-      },
-      {
-        "text": "C# Client",
-        "link": "/csharp-server-events-client"
-      },
-      {
-        "text": "TypeScript Client",
-        "link": "/typescript-server-events-client"
-      },
-      {
-        "text": "Java Client",
-        "link": "/java-server-events-client"
-      },
-      {
-        "text": "JavaScript Client",
-        "link": "/javascript-server-events-client"
-      },
-      {
-        "text": "gRPC Clients",
-        "link": "/server-events-grpc"
-      },
-      {
-        "text": "Redis Server Events",
-        "link": "/redis-server-events"
-      }
-    ]
-  },
-  {
     "text": "Service Gateway",
     "children": [
       {
@@ -347,6 +314,39 @@
       {
         "text": "VB.NET Add Reference",
         "link": "/vbnet-add-servicestack-reference"
+      }
+    ]
+  },
+  {
+    "text": "Server Events",
+    "children": [
+      {
+        "text": "Overview",
+        "link": "/server-events"
+      },
+      {
+        "text": "C# Client",
+        "link": "/csharp-server-events-client"
+      },
+      {
+        "text": "TypeScript Client",
+        "link": "/typescript-server-events-client"
+      },
+      {
+        "text": "Java Client",
+        "link": "/java-server-events-client"
+      },
+      {
+        "text": "JavaScript Client",
+        "link": "/javascript-server-events-client"
+      },
+      {
+        "text": "gRPC Clients",
+        "link": "/server-events-grpc"
+      },
+      {
+        "text": "Redis Server Events",
+        "link": "/redis-server-events"
       }
     ]
   },

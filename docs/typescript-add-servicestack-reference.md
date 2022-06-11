@@ -453,6 +453,20 @@ client.postToUrl("/custom-path", request, { Slug: "ServiceStack" });
 client.putToUrl("http://example.org/custom-path", request);
 ```
 
+### Uploading Files 
+
+We can populate custom requests by either programmatically constructing the 
+[FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object, which also benefits from native integration
+in browsers where it can be populated directly from an HTML Form:
+
+```ts
+let client = new JsonServiceClient(BaseUrl)
+let formData = new FormData(document.forms[0])
+let api = await client.apiForm(new MultipartRequest(), formData)
+```
+
+Where `apiForm` can be used to submit `FormData` requests for normal API Requests, or `apiFormVoid` for `IReturnVoid` API requests.
+
 ### Raw Data Responses
 
 The `JsonServiceClient` also supports Raw Data responses like `string` and `byte[]` which also get a Typed API 
