@@ -1,21 +1,12 @@
 
-JWT first-class support for Refresh Token Cookies is implicitly enabled when configuring the `JwtAuthProvider` to use Cookies:
+JWT first-class support for Refresh Token Cookies is implicitly enabled when configuring the `JwtAuthProvider` which uses 
+[JWT Token Cookies](/jwt-authprovider.html#jwt-token-cookies) by default which upon authentication will return the Refresh Token in a `ss-reftok` **Secure**, **HttpOnly** Cookie alongside the Users stateless Authenticated UserSession in the JWT `ss-tok` Cookie.
 
-```csharp
-Plugins.Add(new AuthFeature(() => new AuthUserSession(),
-    new IAuthProvider[] {
-        new JwtAuthProvider {
-            UseTokenCookie = true,
-        },
-    }));
-```
+This supports [transparently auto refreshing access tokens](/jwt-authprovider.html#transparent-server-auto-refresh-of-jwt-tokens) in HTTP Clients
+by default as the server will rotate JWT Access Token Cookies which expire before the Refresh Token expiration.
 
-Which upon authentication will return the Refresh Token in a `ss-reftok` **Secure**, **HttpOnly** Cookie alongside
-the Users stateless Authenticated UserSession in the JWT `ss-tok` Cookie.
-
-The benefit of maintaining smart, generic Service Clients for all [Add ServiceStack Reference](/add-servicestack-reference)
-languages is being able to provide a nicer (i.e. maintenance-free) development experience with all Service Clients
-now including built-in support for Refresh Token Cookies where they’ll automatically fetch new JWT Bearer Tokens &
+The alternative configuration of using explicit JWT Bearer Tokens is also supported in all smart, generic Service Clients for all [Add ServiceStack Reference](/add-servicestack-reference) languages which enable a nicer (i.e. maintenance-free) development experience with all Service Clients
+including built-in support for Refresh Token Cookies where they’ll automatically fetch new JWT Bearer Tokens &
 transparently Auto Retry Requests on 401 Unauthorized responses:
 
 #### C#, F# & VB .NET Service Clients

@@ -108,7 +108,18 @@ By-pass protected services using query string:
 /my-service?authsecret=secretz
 ```
 
-Or if using a Service Client it can be sent in the `authsecret` Cookie or `X-Param-Override-authsecret` HTTP Header.
+### AuthSecret HttpHeader
+
+In addition to **authsecret** QueryString, FormData or Cookie, it can also be sent with any request with the `authsecret` HTTP Header, e.g:
+
+```ts
+let client = new JsonServiceClient(BaseUrl).apply(c => {
+    c.basePath = '/api'
+    c.headers.set('authsecret', authsecret)
+})
+```
+
+Or it can be sent in the `authsecret` Cookie or `X-Param-Override-authsecret` HTTP Header.
 
 ## Debug Links
 

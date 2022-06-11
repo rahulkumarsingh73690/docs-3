@@ -74,13 +74,33 @@ new JwtAuthProvider(...) {
 }
 ```
 
-### Enable Server Cookies
+## JWT Token Cookies
 
-A popular way for maintaining JWT Tokens on clients is via Secure HttpOnly Cookies, this default behavior can be configured on the server to return Authenticated Sessions in a stateless JWT Token on the server with `UseTokenCookie`:
+From **v6+** the default configuration of the [JWT Auth Provider](/jwt-authprovider) uses **HTTP Token Cookies by default** which is both recommended [for Web Apps](https://stormpath.com/blog/where-to-store-your-jwts-cookies-vs-html5-web-storage#where-to-store-your-jwts) that's also better able to support effortless JWT Token management features.
+
+It allows for a more interoperable and seamless solution as it already works with the normal client logic for authenticating using normal [Server Session Cookies](/sessions), e.g:
 
 ```csharp
-new JwtAuthProvider(appSettings) {
-    UseTokenCookie = true
+let api = client.api(new Authenticate({ provider:'credentials', userName, password, rememberMe }))
+```
+
+Which also works transparently after a configuring to use JWT on the server to switch to using stateless JWT Tokens, as in both cases the HTTP Clients utilize Cookies to enable authenticated requests.
+
+### Transparent Server Auto Refresh of JWT Tokens
+
+JWTs enable stateless authentication of clients without servers needing to maintain any Auth state in server infrastructure or perform any I/O to validate a token. As such, [JWTs are a popular choice for Microservices](/jwt-authprovider#stateless-auth-microservices) as they only need to configured with confidential keys to validate access.
+
+But to be able to terminate a users access, they need to revalidate their eligibility to verify they're still allowed access (e.g. deny Locked out users). This JWT revalidation pattern is implemented using [Refresh Tokens](/jwt-authprovider#refresh-tokens) which are used to request revalidation of their access with a new JWT Access Token which they'll be able to use to make authenticated requests until it expires.
+
+Previously the management of **auto refreshing expired JWT Access Tokens** was done with logic built into each of our smart generic Service Clients. But switching to use Token Cookies allows us to implement the revalidation logic on the server where it's now able to do this **transparently for all HTTP Clients**, i.e. it's no longer just limited to our typed Service Clients. 
+
+### Revert to Bearer Token Responses
+
+If you prefer not to use HTTP Token Cookies and want to manually handle JWT Auth Tokens, you can revert to returning JWT Tokens in `AuthenticateResponse` API responses with:
+
+```csharp
+new JwtAuthProvider(AppSettings) {
+    UseTokenCookie = false
 }
 ```
 
@@ -1061,6 +1081,37 @@ JsonObject payload = jwtProvider.GetValidJwtPayload(validJwt);
 
 var userId = payload["sub"];
 ```
+
+### Large Profile Image Handling
+
+As [high res profile images in Microsoft Graph Auth](/releases/v6.html#microsoft-graph-auth) doesn't return a CDN URI to a users profile image that can be referenced within Apps directly, it pushes the burden of profile image management down to every authenticating App server, which to maintain their **statelessness**, means converting into a [Data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs), except as it typically returns the high-res image JPEG which far exceeds the maximum **4kb** limit of cookies, it requires resizing in order to make fit (otherwise the JWT Cookie is ignored and Authentication will fail). 
+
+Unfortunately as [Image Resizing is unreliable in Linux](/releases/v6.html#state-of-imaging-on-linux) we've had to adopt an alternative solution that's able to display a users high-res photo whilst still keeping our App server stateless by creating a new [ImagesHandler](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack/ImagesHandler.cs) that the JWT AuthProvider calls `RewriteImageUri()` on to replace any large profile URLs with a link to its `/auth-profiles/{MD5}.jpg` - a URL it also handles serving the original high-res image back to.
+
+This is the solution `AuthFeature` uses by default, pre-configured with:
+
+```csharp
+new AuthFeature {
+    ProfileImages = new ImagesHandler("/auth-profiles", fallback: Svg.GetStaticContent(Svg.Icons.DefaultProfile))
+}
+```
+
+Where if using a custom [SavePhotoSize](https://github.com/NetCoreTemplates/blazor-wasm/blob/main/MyApp/appsettings.Development.json#L30) will be resized using Microsoft Graph APIs, if the resized image size still exceeds the max allowable size in JWT Cookies it's swapped out for a URL reference to the image which ImageHandler stores in memory. The trade-off of this default is when your Docker App is re-deployed, whilst their stateless authentication keeps them authenticated, the original high-res photo saved in ImageHandler's memory will be lost, which will be replaced with the fallback `Svg.Icons.DefaultProfile` image.
+
+Using an MD5 hash does allow us to maintain URLs that's both predictable in that it will result in the same hash after every sign in, while also preventing information leakage that using a predictable User Id would do. A client-only solution that could retain their avatar across deployments is saving it to localStorage however that pushes the burden down to every client App using your APIs, which could be manageable if you control all of them.
+
+#### Persistent Large Profile Image Handling
+
+For a persistent solution that retains profile images across deployments you can use `PersistentImagesHandler` with the VFS Provider and path for profile images to be written to, e.g:
+
+```csharp
+new AuthFeature {
+    ProfileImages = new PersistentImagesHandler("/auth-profiles", Svg.GetStaticContent(Svg.Icons.DefaultProfile),
+        appHost.VirtualFiles, "/App_Data/auth-profiles")
+}
+```
+
+When using the default `FileSystemVirtualFiles` VFS provider this would require configuring your Docker App with a persistent `/App_Data` Volume, otherwise using one of the other [Virtual Files Providers](/virtual-file-system) like `S3VirtualFiles` or `AzureBlobVirtualFiles` may be the more preferable solution to keep your Docker Apps stateless.
 
 ### Refresh Token Cookies supported in all Service Clients
 
