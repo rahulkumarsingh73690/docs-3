@@ -16,7 +16,7 @@ Further Admin UI functionality can be enabled by adding the necessary dependenci
 
 ### Disabling the Admin UI
 
-If desired the **/admin-ui** feature can be selectively or entirely disabled with:
+If desired, the **/admin-ui** features can be selectively or entirely disabled using the `AdminUi` Enum flags:
 
 ```csharp
 ConfigurePlugin<UiFeature>(feature => feature.AdminUi = AdminUi.None);
@@ -45,7 +45,7 @@ Which the built-in [Validation Feature](/validation.html#validation-feature) det
 
 ## Admin Users
 
-User management functionality for creating & modifying users, adding roles & permissions, locking users or updating their passwords can be enabled by registering `AdminUsersFeature` plugin:
+User management functionality for creating & modifying users, assigning Roles & Permissions, locking users or updating their passwords can be enabled by registering `AdminUsersFeature` plugin:
 
 ```csharp
 Plugins.Add(new AdminUsersFeature());
@@ -58,7 +58,7 @@ Which enables a familiar UI for searching & managing users:
 </div>
 
 ::: info
-An `IAuthRepository` is required to be a registered dependency to use the `AdminUsersFeature` plugin.
+Refer to [Admin UI Docs](/admin-ui) to learn about Admin User features and available customization options
 :::
 
 ## Recommend Admin UI Features
