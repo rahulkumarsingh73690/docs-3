@@ -30,18 +30,38 @@ The most popular `IValidationSource` for maintaining dynamic validation rules is
 in the App's registered database's `ValidationRule` RDBMS Table:
 
 ```csharp
-services.AddSingleton<IValidationSource>(c => 
-    new OrmLiteValidationSource(c.Resolve<IDbConnectionFactory>()));
+[assembly: HostingStartup(typeof(MyApp.ConfigureValidation))]
 
-// Create `ValidationRule` table if it doesn't exist in AppHost.Configure() or Modular Startup
-appHost.Resolve<IValidationSource>().InitSchema();
+namespace MyApp;
+
+public class ConfigureValidation : IHostingStartup
+{
+    // Add support for dynamically generated db rules
+    public void Configure(IWebHostBuilder builder) => builder
+        .ConfigureServices(services => services.AddSingleton<IValidationSource>(c =>
+            new OrmLiteValidationSource(c.Resolve<IDbConnectionFactory>())))
+        .ConfigureAppHost(appHost => {
+            // Create `ValidationRule` table if it doesn't exist in AppHost.Configure() or Modular Startup
+            appHost.Resolve<IValidationSource>().InitSchema();
+        });
+}
 ```
+
+Which can be quickly added to your project with the [x mix script](/mix-tool) below:
+
+:::sh
+x mix validation-source
+:::
 
 Which the built-in [Validation Feature](/validation.html#validation-feature) detects to register the `GetValidationRules` and `ModifyValidationRules` APIs used by the Admin Validation Feature:
 
 <div class="block p-4 rounded shadow">
     <img src="/images/admin-ui/validation.png">
 </div>
+
+::: info
+Refer to [Admin UI Validation Docs](/admin-ui-validation) to learn about dynamic DB Validation Rules
+:::
 
 ## Admin Users
 
@@ -58,7 +78,7 @@ Which enables a familiar UI for searching & managing users:
 </div>
 
 ::: info
-Refer to [Admin UI Docs](/admin-ui) to learn about Admin User features and available customization options
+Refer to [Admin UI User Docs](/admin-ui) to learn about Admin User features and available customization options
 :::
 
 ## Recommend Admin UI Features
