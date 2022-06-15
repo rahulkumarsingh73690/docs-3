@@ -81,10 +81,11 @@ Any additional configuration can be specified as QueryString parameters. The ful
     </tr>
 </table>
 
-When using [Redis ACLs](https://redis.io/docs/manual/security/acl/) the Username needs to specified on the QueryString:
+When using [Redis ACLs](https://redis.io/docs/manual/security/acl/) the Username needs to specified on the QueryString, e.g:
 
-```
-redis://localhost:6380?ssl=true&Username=username&Password=password
+```csharp
+var connString = $"redis://{Host}?ssl=true&username={Username}&password={Password.UrlEncode()}";
+var redisManager = new RedisManagerPool(connString);
 ```
 
 ## [ServiceStack.Redis SSL Support](http://docs.servicestack.net/ssl-redis-azure)
