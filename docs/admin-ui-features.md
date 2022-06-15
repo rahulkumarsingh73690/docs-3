@@ -2,9 +2,9 @@
 title: Admin UI Features
 ---
 
-The [Admin UI](/admin-ui) provides **Admin** Users a UX Friendly UI to access ServiceStack features and summary insights into the APIs hosted by the ServiceStack App, accessible from:
+Built into v6+ ServiceStack Apps is the [Admin UI](/admin-ui) providing **Admin** Users a UX Friendly UI to access ServiceStack features and summary insights, available from:
 
-<h3 class="text-center font-medium text-3xl mb-3">/admin-ui</h3>
+<h3 class="text-center font-medium text-3xl m-0 py-3">/admin-ui</h3>
 
 Which after authenticating will take you to the Admin UI dashboard showing the authenticated Admin User details and general API stats:
 
@@ -60,7 +60,7 @@ Which the built-in [Validation Feature](/validation.html#validation-feature) det
 </div>
 
 ::: info
-Refer to [Admin UI Validation Docs](/admin-ui-validation) to learn about dynamic DB Validation Rules
+See [Admin UI Validation Docs](/admin-ui-validation) to learn about dynamic DB Validation Rules
 :::
 
 ## Admin Users
@@ -78,7 +78,7 @@ Which enables a familiar UI for searching & managing users:
 </div>
 
 ::: info
-Refer to [Admin UI User Docs](/admin-ui) to learn about Admin User features and available customization options
+See [Admin UI User Docs](/admin-ui) to learn about Admin User features and available customization options
 :::
 
 ## Recommend Admin UI Features
