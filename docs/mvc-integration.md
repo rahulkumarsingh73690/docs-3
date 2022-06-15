@@ -1,7 +1,11 @@
 ---
 slug: mvc-integration
-title: MVC Integration
+title: ASP.NET MVC Integration
 ---
+
+:::tip
+These docs only apply to ASP .NET Framework MVC projects, for [.NET Core](/netcore) see [MVC Project Templates](/templates-mvc)
+:::
 
 ### Add ServiceStack to an existing MVC Project
 
@@ -204,13 +208,6 @@ protected void Application_EndRequest(object src, EventArgs e)
 ```
 
 For more info on the MiniProfiler see the [Built in profiling](/built-in-profiling) docs.
-
-The Urls for metadata page and included Services:
-
-  * [/api/metadata](http://bootstrapapi.servicestack.net/api/metadata) - Auto generated metadata pages
-  * [/api/hello](http://bootstrapapi.servicestack.net/api/hello/World) - Simple Hello World Service 
-  * [/api/todos](http://bootstrapapi.servicestack.net/api/todos) - Simple REST Service see: http://todos.netcore.io
-  * [/default.htm](http://todos.netcore.io/) - Backbone.js TODO application talking to the TODO REST service at /api/todos
 
 ## [Accessing ServiceStack from MVC](/servicestack-integration)
 

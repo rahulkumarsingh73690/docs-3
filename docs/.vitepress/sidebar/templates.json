@@ -19,16 +19,20 @@
             "link": "/templates-jamstack"
           },
           {
-            "text": "Single Page App Templates",
-            "link": "/templates-single-page-apps"
+            "text": "Empty Templates",
+            "link": "/templates-empty"
           },
           {
             "text": "Website Templates",
             "link": "/templates-websites"
           },
           {
-            "text": "Empty Templates",
-            "link": "/templates-empty"
+            "text": "MVC Templates",
+            "link": "/templates-mvc"
+          },
+          {
+            "text": "Single Page App Templates",
+            "link": "/templates-single-page-apps"
           },
           {
             "text": "Vue and React \"lite\" Templates",

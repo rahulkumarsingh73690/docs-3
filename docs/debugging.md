@@ -237,9 +237,7 @@ Rolling-size capacity, error and session tracking, hidden request bodies for sen
 Plugins.Add(new RequestLogsFeature());
 ```
 
-The `IRequestLogger` is a great way to introspect and analyze your service requests in real-time. 
-Here's a screenshot from the [http://bootstrapapi.servicestack.net](http://bootstrapapi.servicestack.net) 
-website:
+The `IRequestLogger` is a great way to introspect and analyze your service requests in real-time, e.g:
 
 ![Live Screenshot](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/wikis/request-logs-01.png)
 

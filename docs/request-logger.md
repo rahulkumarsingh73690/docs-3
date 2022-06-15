@@ -159,7 +159,7 @@ Like other ServiceStack [Plugins](/plugins) the `RequestLogsFeature` has a numbe
 
 ### Usage
 
-The `IRequestLogger` is a great way to introspect and analyze your service requests in real-time. Here's a screenshot from the [bootstrapapi.servicestack.net](http://bootstrapapi.servicestack.net) website:
+The `IRequestLogger` is a great way to introspect and analyze your service requests in real-time, e.g:
 
 ![Live Screenshot](/images/plugins/request-logs-01.png)
 

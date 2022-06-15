@@ -3,6 +3,10 @@ slug: servicestack-side-by-side-with-another-web-framework
 title: Run side-by-side with another Framework
 ---
 
+:::tip
+These docs only apply to ASP .NET Framework MVC projects, for [.NET Core](/netcore) see [MVC Project Templates](/templates-mvc)
+:::
+
 In order to avoid conflicts with your existing ASP.NET web framework it is recommended to host your ServiceStack web services at a custom path.
 This will allow you to use ServiceStack together with an existing web framework e.g. ASP.NET MVC 3 or FUBU MVC, etc.
 
