@@ -45,6 +45,11 @@ Any additional configuration can be specified as QueryString parameters. The ful
         <td>A text alias to specify for this connection for analytic purposes</td>
     </tr>
     <tr>
+        <td><b>Username</b></td>
+        <td>string</td>
+        <td>Redis Username when using ACLs</td>
+    </tr>
+    <tr>
         <td><b>Password</b></td>
         <td>string</td>
         <td>UrlEncoded version of the Password for this connection</td>
@@ -75,6 +80,12 @@ Any additional configuration can be specified as QueryString parameters. The ful
         <td>Use a custom prefix for ServiceStack.Redis internal index colletions</td>
     </tr>
 </table>
+
+When using [Redis ACLs](https://redis.io/docs/manual/security/acl/) the Username needs to specified on the QueryString:
+
+```
+redis://localhost:6380?ssl=true&Username=username&Password=password
+```
 
 ## [ServiceStack.Redis SSL Support](http://docs.servicestack.net/ssl-redis-azure)
 
