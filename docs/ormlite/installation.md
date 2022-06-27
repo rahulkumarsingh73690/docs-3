@@ -50,7 +50,7 @@ Uses **[System.Data.SQLite](https://system.data.sqlite.org)**. Supports **.NET 6
 :::
 
 
-Uses **[Microsoft.Data.Sqlite](https://docs.microsoft.com/en-us/dotnet/standard/data/sqlite/)**. Supports **.NET 6+** and **.NET Standard 2.0** (.NET 5 and lower)
+Uses **[Microsoft.Data.Sqlite](https://docs.microsoft.com/en-us/dotnet/standard/data/sqlite/)**. Supports **.NET 6+** and **.NET Standard 2.0** (.NET 5 and lower), Apple M1 ARM
 
 ::: nuget
 `<PackageReference Include="ServiceStack.OrmLite.Sqlite.Data" Version="6.*" />`

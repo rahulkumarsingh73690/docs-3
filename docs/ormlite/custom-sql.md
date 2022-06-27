@@ -25,7 +25,7 @@ var q = db.From<Person>()
           .Where(x => x.Age < 50)
           .Select(Sql.Count("*"));
 int result = db.SqlScalar<int>(q);
-int result = db.SqlScalar<int>("SELCT COUNT(*) FROM Person WHERE Age < 50");
+int result = db.SqlScalar<int>("SELECT COUNT(*) FROM Person WHERE Age < 50");
 ```
 
 ## Custom SQL with Typed SqlExpression
