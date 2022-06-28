@@ -53,8 +53,6 @@ Templates currently available are:
 ### release-ghr-vanilla
 Using GitHub Container Repository (ghcr.io) and deploying to a Linux host with `docker-compose` via SSH, this provides a GitHub centric option for prototyping your application. A [full tutorial using Digital Ocean as our Linux host provider is available](https://docs.servicestack.net/do-github-action-mix-deployment) as well as an accompanying video.
 
-> YouTube: [youtu.be/0PvzcnxlBvc](https://youtu.be/0PvzcnxlBvc)
-
 <iframe class="video-hd" src="https://www.youtube.com/embed/0PvzcnxlBvc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Also, a [shorter reference documentation](https://github.com/ServiceStack/mix/blob/master/actions/release-ghr-vanilla/.github/workflows/README.md) that comes with the template when using `mix` available that lists the setup as well as the required [GitHub Repository](https://github.com/ServiceStack/mix/blob/master/actions/release-ghr-vanilla/.github/workflows/README.md#github-repository-setup) Secrets for configuration.
@@ -73,8 +71,6 @@ Reference for this GitHub Action configuration is provided with the template its
 Using AWS ECR (Elastic Container Repository) and deploying via AWS ECS to a dedicated ECS cluster with a single EC2 instance, this template enables a gateway into using AWS ECS without the regular cost of an Application Load Balancer (ALB). Like the other templates, this uses NGINX proxy with Lets Encrypt companion in place of AWS specific managed services to do the same. This will give you a starting point for your prototype until you have the need for scalability and high availability for your application.
 
 We have a full tutorial along with a video walk through available, showing from start to finish getting your ServiceStack application created and deploying via GitHub Actions and ECS. 
-
-> YouTube: [youtu.be/Eh4tvLN8i8g](https://youtu.be/Eh4tvLN8i8g)
 
 <iframe class="video-hd" src="https://www.youtube.com/embed/Eh4tvLN8i8g" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
