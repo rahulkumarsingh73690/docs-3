@@ -55,7 +55,7 @@ Using GitHub Container Repository (ghcr.io) and deploying to a Linux host with `
 
 > YouTube: [youtu.be/0PvzcnxlBvc](https://youtu.be/0PvzcnxlBvc)
 
-[![](https://i.ytimg.com/vi/0PvzcnxlBvc/maxresdefault.jpg)](https://youtu.be/0PvzcnxlBvc)
+<iframe class="video-hd" src="https://www.youtube.com/embed/0PvzcnxlBvc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Also, a [shorter reference documentation](https://github.com/ServiceStack/mix/blob/master/actions/release-ghr-vanilla/.github/workflows/README.md) that comes with the template when using `mix` available that lists the setup as well as the required [GitHub Repository](https://github.com/ServiceStack/mix/blob/master/actions/release-ghr-vanilla/.github/workflows/README.md#github-repository-setup) Secrets for configuration.
 
@@ -76,7 +76,7 @@ We have a full tutorial along with a video walk through available, showing from 
 
 > YouTube: [youtu.be/Eh4tvLN8i8g](https://youtu.be/Eh4tvLN8i8g)
 
-[![](https://i.ytimg.com/vi/Eh4tvLN8i8g/maxresdefault.jpg)](https://youtu.be/Eh4tvLN8i8g)
+<iframe class="video-hd" src="https://www.youtube.com/embed/Eh4tvLN8i8g" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Reference for this GitHub Action configuration is provided with the template itself, [also available on GitHub](https://github.com/ServiceStack/mix/blob/master/actions/release-ecr-aws/.github/workflows/README.md) here along with the [required Repository Secrets](https://github.com/ServiceStack/mix/blob/master/actions/release-ecr-aws/.github/workflows/README.md#github-repository-setup).
 

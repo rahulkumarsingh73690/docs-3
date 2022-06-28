@@ -269,7 +269,7 @@ This tool enables your developers, and even your customers, to open a working ex
 
 Walk through configuring your ServiceStack Application's `AppHost`:
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/mOpx5mUGoqI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/mOpx5mUGoqI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Explore ServiceStack
 

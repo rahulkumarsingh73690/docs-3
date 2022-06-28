@@ -11,7 +11,7 @@ To see the rapid development of AutoQuery in action we've created a quick demo s
 
 All declarative functionality is accessible in ServiceStack Studio which is used to create new Employee & Manager Users, before signing in with each to hit the ground running and start entering new bookings using Studio's capability-based UI, with each change visible in its full **Audit History**.
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/nhc4MZufkcM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/nhc4MZufkcM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### New features in Studio
 

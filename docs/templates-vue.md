@@ -22,8 +22,7 @@ See the documentation in each project for more info on features of each template
 
 Bootstrapped with [Vue CLI 3](https://cli.vuejs.org/).
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/4HphWPrKwb0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
+<iframe class="video-hd" src="https://www.youtube.com/embed/4HphWPrKwb0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ::: info YouTube
 [youtu.be/4HphWPrKwb0](https://youtu.be/4HphWPrKwb0)

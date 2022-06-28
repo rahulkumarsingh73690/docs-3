@@ -53,7 +53,7 @@ be able easily add a typed Service Reference to your Services with just its URL 
 
 Here's a quick walk through installing the **ServiceStack** plugin and using it to add a remote ServiceStack Reference in a new C# Application:
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/JKsgrstNnYY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/JKsgrstNnYY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Whilst VSCode and other IDEs will be able to [Simple Command Line Utility](#simple-command-line-utilities) for adding and updating multiple Services references with a single command.
 
@@ -61,13 +61,13 @@ Whilst VSCode and other IDEs will be able to [Simple Command Line Utility](#simp
 
 Using C# to develop native Mobile and Desktop Apps provides a number of benefits including maximum reuse of your investments across multiple Client Apps where they're able to reuse shared functionality, libraries, knowledge, development workflow and environment in both Client and Server Apps. 
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### Call ServiceStack APIs from a Flutter App with native Dart client and DTOs
 
 Walk through showing how you can use ServiceStack's Dart client library with your Flutter Android application to quickly get up and running with Add ServiceStack Reference.
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/ocH5L-CikQ0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/ocH5L-CikQ0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## C# Mobile and Desktop Apps
 

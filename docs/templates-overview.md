@@ -110,7 +110,7 @@ All [ServiceStack Single Page App templates](/templates-single-page-apps) are po
 
 ### [Vue SPA Template](https://github.com/NetCoreTemplates/vue-spa)
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/4HphWPrKwb0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/4HphWPrKwb0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 > YouTube: [https://youtu.be/4HphWPrKwb0](https://youtu.be/4HphWPrKwb0)
 
@@ -118,7 +118,7 @@ All [ServiceStack Single Page App templates](/templates-single-page-apps) are po
 
 This project lets you create a .NET 6 empty ServiceStack web project ready for deployment as a AWS Lambda Function wired with API GateWay and packaged via a Docker image.
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/8mpGNTsSlvE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/8mpGNTsSlvE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 > YouTube: [https://youtu.be/8mpGNTsSlvE](https://youtu.be/8mpGNTsSlvE)
 

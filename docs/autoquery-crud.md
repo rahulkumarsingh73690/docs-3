@@ -35,7 +35,7 @@ industry leading [myriad of Service endpoints](/why-servicestack#features-overvi
 
 For a sample of the productivity enabled checkout the [Bookings CRUD](https://github.com/NetCoreApps/BookingsCrud) demo to create a multi-user ASP.NET Core Booking System from scratch within minutes with full Audit History, fine-grained permissions, declarative validation, run adhoc queries & export to Excel by just defining code-first high-performance AutoQuery CRUD Typed APIs 
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/XpHAaCTV7jE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/XpHAaCTV7jE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Creating AutoQuery CRUD Services
 

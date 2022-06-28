@@ -15,7 +15,7 @@ At the core of Jupyter is the "Notebook" (Nb) - an open JSON document format tha
 
 ## Create Python, C# and F# Jupyter Notebooks for any ServiceStack API
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/h6UwDuXt8MA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/h6UwDuXt8MA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 By leveraging [Add ServiceStack Reference's](/add-servicestack-reference) rich, typed ecosystem we're able to tap into the exciting interactive world of Jupyter Notebooks where ServiceStack API consumers are now able to generate custom-tailored notebooks for ServiceStack API using a [Simple UI](https://apps.servicestack.net) or generated from a single command-line if preferred.
 

@@ -28,7 +28,7 @@ $ app open studio
 
 ## Studio Preview
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/kN7371bqUII" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/kN7371bqUII" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 **Studio** replaces the [ServiceStack Admin UI](https://github.com/ServiceStack/Admin) where it provides a UX-friendly UI for accessing AutoQuery & Crud Services but will also gain UI features for taking advantage of various ServiceStack Plugins & Features, e.g. in this initial release it includes UI's for **Managing DB Validation Rules** & for viewing the **Executable Audit History of Tables** updated through AutoCrud Services.
 

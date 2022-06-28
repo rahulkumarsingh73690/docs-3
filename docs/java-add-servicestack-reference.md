@@ -11,7 +11,7 @@ The **ServiceStackIDEA** plugin also includes support for **IntelliJ Maven proje
 
 Java Android Example using Android Studio
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/xg677weFef4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/xg677weFef4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### Install ServiceStack IDEA from the Plugin repository
 

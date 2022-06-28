@@ -19,7 +19,7 @@ ServiceStack's **Add ServiceStack Reference** feature allows clients to generate
 
 React Native Android JavaScript Example using VS Code
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/T3KTDPdovOw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/T3KTDPdovOw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### First class development experience
 

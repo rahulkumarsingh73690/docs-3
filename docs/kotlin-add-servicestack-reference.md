@@ -28,7 +28,7 @@ API with just a Menu Item click - enabling a highly-productive workflow for cons
 
 ## Kotlin Android Example using Android Studio
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/nmB0NaI9-3k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/nmB0NaI9-3k" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### Kotlin Android Resources
 

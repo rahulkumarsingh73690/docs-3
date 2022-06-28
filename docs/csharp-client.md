@@ -5,7 +5,7 @@ title: C#/.NET Service Clients
 
 Using DTOs to define your web service interface makes it possible to provide strong-typed generic service clients without any code-gen or extra build-steps, leading to a productive end-to-end type-safe communication gateway from client to server.
 
-<iframe width="896" height="525" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/cbYuem1b2tg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
  **ServiceStack.Client** is the primary NuGet package containing ServiceStack's client libraries that can be included in your `.csproj` with:
 
