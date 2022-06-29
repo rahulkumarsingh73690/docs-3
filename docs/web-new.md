@@ -11,29 +11,29 @@ import netfxtable from './.vitepress/includes/web-new-netfx.md';
 
 All ServiceStack Projects can be created using the .NET Core [x dotnet tool](https://www.nuget.org/packages/x):
 
-```shell
-    $ dotnet tool install --global x 
-```
+:::sh
+dotnet tool install --global x 
+:::
 
 If you had a previous version installed, update with:
 
-```shell
-    $ dotnet tool update -g x
-```
+:::sh
+dotnet tool update -g x
+:::
 
 All features from the cross-platform `x` dotnet tool are also available from the [.NET Core Windows Desktop app](/netcore-windows-desktop) tool:
 
-```shell
-    $ dotnet tool install --global app 
-```
+:::sh
+dotnet tool install --global app
+:::
 
 #### Usage
 
 To view a list of projects run:
 
-```shell
-    $ x new
-```
+:::sh
+x new
+:::
 
 Where it will display all repositories in [.NET Core](https://github.com/NetCoreTemplates), 
 [.NET Framework](https://github.com/NetFrameworkTemplates) and 
@@ -51,9 +51,9 @@ x new `<template>` `<name>`
 
 For example to create a new **Vue Single Page App**, run:
 
-```shell
-    $ x new vue-spa ProjectName
-```
+:::sh
+x new vue-spa ProjectName
+:::
 
 ## Modernized Project Templates
 

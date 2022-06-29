@@ -19,9 +19,9 @@ dotnet tool install --global x
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/mvc.png)](https://github.com/NetCoreTemplates/mvc)
 
-```bash
-$ x new mvc ProjectName                    # .NET 6+
-```
+:::sh
+x new mvc ProjectName
+:::
 
 ## MVC with Integrated Auth
 
@@ -31,9 +31,9 @@ $ x new mvc ProjectName                    # .NET 6+
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcauth.png)](https://github.com/NetCoreTemplates/mvcauth)
 
-```bash
-$ x new mvcauth ProjectName                # .NET 6+
-```
+:::sh
+x new mvcauth ProjectName
+:::
 
 ::: tip
 Learn about [using ServiceStack Auth in MVC](/authentication-identity-servicestack)
@@ -45,9 +45,9 @@ Learn about [using ServiceStack Auth in MVC](/authentication-identity-servicesta
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentity.png)](https://github.com/NetCoreTemplates/mvcidentity)
 
-```bash
-$ x new mvcidentity ProjectName            # .NET 6+
-```
+:::sh
+x new mvcidentity ProjectName
+:::
 
 ::: tip
 Learn about [using ASP.NET Identity Auth in ServiceStack](/authentication-identity-aspnet)
@@ -59,9 +59,9 @@ Learn about [using ASP.NET Identity Auth in ServiceStack](/authentication-identi
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/auth/signin/mvcidentityserver.png)](https://github.com/NetCoreTemplates/mvcidentityserver)
 
-```bash
-$ x new mvcidentityserver ProjectName      # .NET 6+
-```
+:::sh
+x new mvcidentityserver ProjectName
+:::
 
 ::: tip
 Learn about [using IdentityServer4 Auth in ServiceStack](/authentication-identity-aspnet)
