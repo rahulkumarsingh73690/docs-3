@@ -118,7 +118,7 @@ AutoQuery Data's Open Provider model supports multiple back-end data sources. Th
 <h2 class="flex border-none text-4xl">
     <a href="https://www.locode.dev">
         <Icon icon="ri:ship-fill" class="w-10 h-10 align-middle mr-1 text-blue-500" />
-        <span>Locode</span>
+        Locode
     </a>
 </h2>
 
