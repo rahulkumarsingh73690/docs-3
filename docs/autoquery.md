@@ -337,10 +337,10 @@ to generate Live Reports:
         </p>
         <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
             To demonstrate a database-first development workflow we've enabled 
-            <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-autogen">AutoGen</a> on the <b>Northwind</b> 
+            <a class="text-indigo-600" href="/autoquery-autogen">AutoGen</a> on the <b>Northwind</b> 
             sample database to generate 
-            <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-rdbms">AutoQuery</a> &amp; 
-            <a class="text-indigo-600" href="https://docs.servicestack.net/autoquery-crud">CRUD</a> 
+            <a class="text-indigo-600" href="/autoquery-rdbms">AutoQuery</a> &amp; 
+            <a class="text-indigo-600" href="/autoquery-crud">CRUD</a> 
             APIs whose capabilities are used to power the custom Northwind Locode App 
         </p>
     </div>
@@ -506,7 +506,7 @@ to generate Live Reports:
             Reuse typed APIs in Optimized UIs
         </p>
         <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500"> 
-            Locode's declarative dev model lets you focus on your new App's business requirements where its data model, API capabilities, input validation &amp; multi-user Auth restrictions can be defined simply using annotated C# POCOs.<br> This provides immense value at the start of the development cycle where functional prototypes can be quickly iterated to gather business requirements <br><br> Once requirements have been solidified, the typed AutoQuery APIs can easily be reused to develop custom UIs to optimize important workflows. <br><br><a class="text-indigo-600" href="https://github.com/NetCoreApps/TalentBlazor">Talent Blazor</a> is a new App showcasing an example of this where its entire back-office functionality can be managed through Locode whilst an optimized <b>Blazor WASM</b> App is created to optimize its unique workflow requirements which also benefits from the superior productive dev model of its Typed APIs 
+            AutoQuery's declarative dev model lets you focus on your new App's business requirements where its data model, API capabilities, input validation &amp; multi-user Auth restrictions can be defined simply using annotated C# POCOs.<br> This provides immense value at the start of the development cycle where functional prototypes can be quickly iterated to gather business requirements <br><br> Once requirements have been solidified, the typed AutoQuery APIs can easily be reused to develop custom UIs to optimize important workflows. <br><br><a class="text-indigo-600" href="https://github.com/NetCoreApps/TalentBlazor">Talent Blazor</a> is a new App showcasing an example of this where its entire back-office functionality can be managed through Locode whilst an optimized <b>Blazor WASM</b> App is created to optimize its unique workflow requirements which also benefits from the superior productive dev model of its Typed APIs 
         </p>
     </div>
 </div>
