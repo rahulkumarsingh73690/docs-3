@@ -7,20 +7,56 @@ title: AutoQuery
 import { Icon } from "@iconify/vue"
 </script>
 
+<style>
+.container > h1 { display:none }
+</style>
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/autoquery/autoquery-splash.png)
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-20">
+    <h1 class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-6xl">
+        <div class="pb-4">
+            AutoQuery
+            <span class="relative whitespace-nowrap text-blue-600">
+                <svg aria-hidden="true" viewBox="0 0 418 42" class="absolute top-2/3 left-0 h-[0.58em] w-full fill-blue-300/70" preserveAspectRatio="none"
+                    ><path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z"></path></svg>
+                <span class="relative">made simple</span>
+            </span>
+        </div>
+        <div>Instant Query & CRUD APIs</div>
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
+        High performance, Industrial strength, effortless, code-first APIs
+    </p>
+    <div class="mt-36 lg:mt-24">
+        <p class="font-display text-base text-slate-900">
+            Rapidly develop rich queryable APIs for
+        </p>
+        <ul class="flex flex-col items-center gap-y-8 sm:flex-row sm:gap-x-12 sm:gap-y-0 justify-center">
+            <li class="flex" title="PostgreSQL">
+                <Icon icon="cib:postgresql" class="w-16 h-16" />
+            </li>
+            <li class="flex" title="Microsoft SQL Server">
+                <Icon icon="simple-icons:microsoftsqlserver" class="w-16 h-16" />
+            </li>
+            <li class="flex" title="SQLite">
+                <Icon icon="simple-icons:sqlite" class="w-16 h-16" />
+            </li>
+            <li class="flex" title="MySQL">
+                <Icon icon="cib:mysql" class="w-16 h-16" />
+            </li>
+            <li class="flex" title="MariaDB">
+                <Icon icon="simple-icons:mariadbfoundation" class="w-16 h-16" />
+            </li>
+        </ul>
+    </div>
+</div>
 
-## AutoQuery - Instant Queryable APIs
+## Fast, typed, code-first Queryable APIs
 
-The AutoQuery support in ServiceStack adds Auto Querying functionality akin to OData's querying support for Web Api, although we've strongly disregarded their approach which we've long considered [promotes web service anti-patterns](http://stackoverflow.com/a/9579090/85785). To explain the design goals behind AutoQuery it's important to identify and avoid the parts of OData we consider make it a poor fit for services. 
-
-### [Why not OData](/why-not-odata)
-
-[Why not OData](/why-not-odata) goes through what aspects make OData a poor Services technology who's Services anti-patterns violates Microsoft's own Services Design guidelines where its implementation, complexity, poor performance, tight-coupling and inhibitive versionability is reminiscent of their earlier rigid, heavy-weight SOAP/SOA frameworks that's still entrenched in a number of legacy systems - [poorly ideologised, over-engineered Services technology](http://www.infoq.com/articles/interview-servicestack) many companies are still trying to recover from.
+ServiceStack's AutoQuery is a fresh, approach to enable Auto Querying functionality akin to OData's querying support for Web Api, but without its [web service anti-patterns](http://stackoverflow.com/a/9579090/85785), over-architected implementation, large complexity, poor performance, tight-coupling and inhibitive versionability, traits we've strongly recommended against in [Why not OData](/why-not-odata).
 
 ## Introducing AutoQuery
 
-The solution to overcome most of OData issues is ultimately quite simple: enhance the ideal API the developer would naturally write and complete their implementation for them! This is essentially the philosophy behind AutoQuery which utilizes conventions to automate creation of intent-based self-descriptive APIs that are able to specify configurable conventions and leverage extensibility options to maximize the utility of AutoQuery services.
+The solution to overcome most of OData issues is ultimately quite simple: enhance the ideal API the developer would naturally write and complete their implementation for them! This is the design philosophy behind AutoQuery which utilizes conventions to automate creation of intent-based self-descriptive APIs that are able to specify configurable conventions and leverage extensibility options to maximize the utility of AutoQuery services.
 
 AutoQuerying aims to work like optional typing by making it easy to expose contract-less data services for rapid prototyping, then allowing the API to be gradually formalized by decorating Request DTO's with its supported usage, whilst allowing complete freedom in either utilizing and extending AutoQuery's built-in functionality or replacing it entirely without breaking the Service Contract.
 
@@ -79,12 +115,12 @@ AutoQuery Data's Open Provider model supports multiple back-end data sources. Th
  - [AutoQuery Service](/autoquery-service) - a step higher than `MemorySource` where you can decorate the response of existing Services with AutoQuery's rich querying capabilities.
  - [AutoQuery DynamoDB](/autoquery-dynamodb) - adds rich querying capabilities over an AWS DynamoDB Table, offering a giant leap of productivity than constructing DynamoDB queries manually.
 
-<h1 class="flex">
+<h2 class="flex border-none text-4xl">
     <a href="https://www.locode.dev">
         <Icon icon="ri:ship-fill" class="w-10 h-10 align-middle mr-1 text-blue-500" />
         <span>Locode</span>
     </a>
-</h1>
+</h2>
 
 If you're just getting started AutoQuery we also recommend using the built-in [Locode UI](/locode/) which lets you rapidly develop beautiful database-powered Web Apps, from an Instant UI around existing database-first RDBMS tables, or export into [highly customizable](/locode/declarative) declarative code-first development model with, on top of AutoQuery's industrial strength APIs to enable a rapid end-to-end typed development model for Web, Mobile & Desktop Apps.
 
