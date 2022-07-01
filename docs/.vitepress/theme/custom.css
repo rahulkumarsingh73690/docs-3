@@ -101,3 +101,6 @@
 .sh-copy a { color: rgb(243 244 246) }
 .sh-copy a:hover { text-decoration: none }
 
+.archive-url {
+  text-decoration: none !important;
+}
