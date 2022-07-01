@@ -116,10 +116,8 @@ AutoQuery Data's Open Provider model supports multiple back-end data sources. Th
  - [AutoQuery DynamoDB](/autoquery-dynamodb) - adds rich querying capabilities over an AWS DynamoDB Table, offering a giant leap of productivity than constructing DynamoDB queries manually.
 
 <h2 class="flex border-none text-4xl">
-    <a href="https://www.locode.dev">
-        <Icon icon="ri:ship-fill" class="w-10 h-10 align-middle mr-1 text-blue-500" />
-        Locode
-    </a>
+    <Icon icon="ri:ship-fill" class="w-10 h-10 align-middle mr-1 text-blue-500" />
+    <a href="https://www.locode.dev">Locode</a>
 </h2>
 
 If you're just getting started AutoQuery we also recommend using the built-in [Locode UI](/locode/) which lets you rapidly develop beautiful database-powered Web Apps, from an Instant UI around existing database-first RDBMS tables, or export into [highly customizable](/locode/declarative) declarative code-first development model with, on top of AutoQuery's industrial strength APIs to enable a rapid end-to-end typed development model for Web, Mobile & Desktop Apps.
