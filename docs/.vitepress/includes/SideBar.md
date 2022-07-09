@@ -274,7 +274,7 @@
     - [Linux-Hosting-Options](/linux-hosting-options)
 - ##### Amazon Web Services
     - [ServiceStack.Aws](https://github.com/ServiceStack/ServiceStack.Aws)
-    - [PocoDynamo](https://github.com/ServiceStack/PocoDynamo)
+    - [PocoDynamo](/aws-pocodynamo)
     - [AWS Live Demos](https://github.com/ServiceStackApps/AwsApps)
     - [Getting Started with AWS](https://github.com/ServiceStackApps/AwsGettingStarted)
 - ##### Deployment

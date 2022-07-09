@@ -56,7 +56,7 @@ references the latest modular AWSSDK **v3.1x** dependencies **.NET 4.5+** projec
 
 This **ServiceStack.Aws** NuGet package includes implementations for the following ServiceStack providers:
 
-  - **[PocoDynamo](https://github.com/ServiceStack/PocoDynamo)** - Declarative, code-first POCO client for DynamoDB with LINQ support
+  - **[PocoDynamo](/aws-pocodynamo)** - Declarative, code-first POCO client for DynamoDB with LINQ support
   - **[SqsMqServer](https://github.com/ServiceStack/ServiceStack.Aws#sqsmqserver)** - [MQ Server](http://docs.servicestack.net/messaging) for invoking ServiceStack Services via Amazon SQS MQ Service
   - **[S3VirtualFiles](https://github.com/ServiceStack/ServiceStack.Aws#s3virtualfiles)** - A read/write [Virtual FileSystem](http://docs.servicestack.net/virtual-file-system) around Amazon's S3 Simple Storage Service
   - **[DynamoDbAuthRepository](https://github.com/ServiceStack/ServiceStack.Aws#dynamodbauthrepository)** - A [UserAuth repository](http://docs.servicestack.net/authentication-and-authorization) storing UserAuth info in DynamoDB
@@ -438,7 +438,7 @@ public class Todo
 }
 ```
 
-## [PocoDynamo](https://github.com/ServiceStack/PocoDynamo)
+## [PocoDynamo](/aws-pocodynamo)
 
 PocoDynamo is a highly productive, feature-rich, typed .NET client which extends 
 [ServiceStack's Simple POCO life](http://stackoverflow.com/a/32940275/85785) 
@@ -613,10 +613,10 @@ where it was able to reuse the existing `UserAuth` and `UserAuthDetails` POCO da
 Despite its young age we've added a comprehensive test suite behind PocoDynamo which has become our exclusive client
 for developing DynamoDB-powered Apps.
 
-### [PocoDynamo Docs](https://github.com/ServiceStack/PocoDynamo)
+### [PocoDynamo Docs](/aws-pocodynamo)
 
 This only scratches the surface of what PocoDynamo can do, comprehensive documentation is available in the 
-[PocoDynamo project](https://github.com/ServiceStack/PocoDynamo) explaining how it compares to DynamoDB's AWSSDK client,
+[PocoDynamo project](/aws-pocodynamo) explaining how it compares to DynamoDB's AWSSDK client,
 how to use it to store related data, how to query indexes and how to use its rich LINQ querying functionality to query
 DynamoDB.
 
