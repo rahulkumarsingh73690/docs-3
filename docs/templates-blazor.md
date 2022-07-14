@@ -926,6 +926,8 @@ To use the Blazor `FileUpload` client control then send the file and associated 
 }
 ```
 
+![](./images/templates/fileupload-blazor-example.png)
+
 The `FilePropertyName` matches the property name that is annotated by the `UploadTo` attribute. The `Request` is the instance of the request DTO. This must match the related endpoint.
 
 
