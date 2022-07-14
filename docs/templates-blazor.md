@@ -208,16 +208,18 @@ The Built-in UI Components enable a clean & productive dev model and share the s
 
 The Blazor Components in **ServiceStack.Blazor** include:
 
-| Component | Description |
-| -                 | - |
-| `<TextInput>`     | Text Input control for string properties |
-| `<DateTimeInput>` | Date Input control for Date properties |
-| `<CheckboxInput>` | Checkbox Input control for Boolean properties |
-| `<SelectInput>`   | Select Dropdown for properties with finite list of values like Enums |
-| `<TextAreaInput>` | Text Input control for large strings |
-| `<DynamicInput>`  | Dynamic component utilizing the appropriate above Input controls in Auto Forms |
-| `<AlertSuccess>`  | Displaying successful notification feedback |
+| Component         | Description                                                                       |
+|-------------------|-----------------------------------------------------------------------------------|
+| `<TextInput>`     | Text Input control for string properties                                          |
+| `<DateTimeInput>` | Date Input control for Date properties                                            |
+| `<CheckboxInput>` | Checkbox Input control for Boolean properties                                     |
+| `<SelectInput>`   | Select Dropdown for properties with finite list of values like Enums              |
+| `<TextAreaInput>` | Text Input control for large strings                                              |
+| `<DynamicInput>`  | Dynamic component utilizing the appropriate above Input controls in Auto Forms    |
+| `<AlertSuccess>`  | Displaying successful notification feedback                                       |
 | `<ErrorSummary>`  | Displaying error summary message when no contextual field validation is available |
+| `<FileUpload>`    | Used with `FilesUploadFeature` and `UploadTo` attribute to upload files           |
+
 
 ::: info
 All Input controls support contextual validation of ServiceStack's existing [structured Error responses](/error-handling)
@@ -864,5 +866,68 @@ as its route in the Blazor App, which when exists, CDNs give priority to over th
 
 It shares similar behavior as the home page where its pre-rendered content is initially loaded before it's replaced with the
 C# version once the Blazor App loads. The difference is that it prerenders "complete pages" for better SEO & TTFR.
+
+## ServiceStack.Blazor FileUpload Control
+
+For provided as a Tailwind control, the ServiceStack.Blazor package has a file upload control that can be used to upload files along with a request DTO.
+
+| Property         | Description                                                                                         |
+|------------------|-----------------------------------------------------------------------------------------------------|
+| Request          | Request DTO object instance populated with into to be sent to your endpoint.                        |
+| FilePropertyName | The name of the property that is used to reference your file, used with the `[UploadTo]` attribute. |
+
+### Example usage
+
+Below is an example of an AutoQuery CRUD service that references a file used with the [`FileUploadFeature` plugin](./locode/files-upload-filesystem.md).
+
+```csharp
+public class CreateMyDtoWithFileUpload : ICreateDb<MyDtoWithFileUpload>, IReturn<IdResponse>
+{
+    [Input(Type = "file"), UploadTo("fs")]
+    public string FilePath { get; set; }
+    
+    public string OtherData { get; set; }
+}
+
+public class QueryFileUpload : QueryDb<MyDtoWithFileUpload>
+{
+    
+}
+
+public class MyDtoWithFileUpload
+{
+    [AutoIncrement]
+    public int Id { get; set; }
+    
+    public string FilePath { get; set; }
+    
+    public string OtherData { get; set; }
+}
+```
+
+Since the model class `MyDtoWithFileUpload` stores the `UploadLocation` path of the file in the `FilePath` property, the `CreateMyDtoWithFileUpload` request DTO applies the `UploadTo("fs")` attribute to a matching property.
+
+To use the Blazor `FileUpload` client control then send the file and associated data with a `CreateMyDtoWithFileUpload` request instance.
+
+```razor
+@page "/file-upload"
+<h3>FileUploadPage</h3>
+
+<FileUpload Request="request" FilePropertyName="'FilePath'"></FileUpload>
+
+@code {
+
+    // Any additional values should be populated 
+    // on the request object before the upload starts.
+    CreateMyDtoWithFileUpload request = new()
+    {
+        OtherData = "Test"
+    };
+}
+```
+
+![](./images/templates/fileupload-blazor-example.png)
+
+The `FilePropertyName` matches the property name that is annotated by the `UploadTo` attribute. The `Request` is the instance of the request DTO. This must match the related endpoint.
 
 
