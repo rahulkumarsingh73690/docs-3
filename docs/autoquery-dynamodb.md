@@ -5,14 +5,14 @@ title: AutoQuery DynamoDB Data Source
 
 AutoQuery Data's `DynamoDbSource` provides the most productive development experience for effortlessly creating rich, queryable and optimized Services for [DynamoDB data stores](https://aws.amazon.com/dynamodb/).
 
-[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/dynamodb-banner.png)](https://github.com/ServiceStack/PocoDynamo)
+[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/dynamodb-banner.png)](/aws-pocodynamo)
 
 DynamoDB is the near perfect solution if you're on AWS and in need of a managed NoSQL data storage solution 
 that can achieve near-infinite scale whilst maintaining constant single-digit millisecond performance. 
 The primary issue with DynamoDB however is working with it's unstructured schema and API's which is reflected 
 in the official .NET DynamoDB client providing a flexible but low-level and cumbersome development experience 
 to work with directly. Most of these shortcomings are resolved with our POCO-friendly 
-[PocoDynamo](https://github.com/ServiceStack/PocoDynamo) client which provides an intuitive and idiomatic 
+[PocoDynamo](/aws-pocodynamo) client which provides an intuitive and idiomatic 
 Typed .NET API that lets you reuse your DTO's and OrmLite POCO Data Models for persistence in DynamoDB.
 
 Querying in DynamoDB is even more cumbersome, unlike an RDBMS which can process ad hoc queries on non-indexed 
@@ -89,14 +89,14 @@ The text in comments highlight that when the `RockstarAlbum` POCO is stored in a
 [OrmLite](https://github.com/ServiceStack/ServiceStack.OrmLite) 
 creates the table with the `Id` as the Primary Key and `RockstarId` as a Foreign Key to the `Rockstar` table. 
 This is different in DynamoDB where 
-[PocoDynamo](https://github.com/ServiceStack/PocoDynamo) behavior is to keep related records together so
+[PocoDynamo](/aws-pocodynamo) behavior is to keep related records together so
 they can be efficiently queried and will instead Create the `RockstarAlbum` DynamoDB Table with the 
 `RockstarId` as the Hash Key and its unique `Id` as the Range Key.
 
 #### Register DynamoDbSource
 
 To use DynamoDB AutoQuery's you need to first configure 
-[PocoDynamo](https://github.com/ServiceStack/PocoDynamo#download) 
+[PocoDynamo](/aws-pocodynamo#download) 
 which is just a matter of passing an an initialized `AmazonDynamoDBClient` and telling PocoDynamo which 
 DynamoDB tables you intend to use:
 
