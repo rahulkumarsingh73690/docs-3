@@ -8,6 +8,8 @@ GitHub Actions are a great tool for automating builds, tests and deployments in 
 
 We've created a mix template for building and deploying your ServiceStack app with GitHub Actions, GitHub Container Repository and Docker Compose all via SSH for a minimalist server hosting setup.
 
+<iframe class="video-hd" src="https://www.youtube.com/embed/0PvzcnxlBvc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 Specifically, we'll be using `x mix build release-ghr-vanilla` which has GitHub actions configured ready to deploy your ServiceStack application when a new GitHub release is created. This can be run at the root of your local repository folder, for example if you wanted to create an empty web application you would run:
 
 ```
@@ -23,7 +25,9 @@ git push
 
 Pushing your new application to GitHub, the `build.yml` will run a `dotnet build` and `dotnet test` within the CI environment. For deployments, we want to get a server setup for hosting the new application.
 
-> `x mix release-*` are designed to be used with ServiceStack applications that were created with most `x new` project templates that follow the ServiceStack recommended project structure. They are designed to be a starting point that you can edit once created to suit your needs.
+::: info
+`x mix release-*` are designed to be used with ServiceStack applications that were created with most `x new` project templates that follow the ServiceStack recommended project structure. They are designed to be a starting point that you can edit once created to suit your needs.
+:::
 
 ## Digital Ocean Droplets Host
 In this tutorial, we'll be using a Digital Ocean Droplet as the target server and walk through the steps required to setup this automated deployment process for your ServiceStack application.
@@ -46,7 +50,7 @@ The rest of the options, leave as default.
 ### Create your new SSH key
 If you ended up using an existing SSH key, now would be the time to create one specifically for deploying applications to this server, and **only that function**.
 
-The reason this is important is because we will be using the private key within our GitHub Actions, which means the private key generated will be leaving your local computer and stored within GitHub Secrets. In the event that this key is compromised, we want to limit its use.
+The reason this is important because we will be using the private key within our GitHub Actions, which means the private key generated will be leaving your local computer and stored within GitHub Secrets. In the event that this key is compromised, we want to limit its use.
 
 Digital Ocean has some excellent documentation for [this process here](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-20-04).
 
@@ -83,9 +87,11 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-> These scripts required sudo privileges, see [Docker notes regarding security](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script).
-> Full repository based [script available here](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository).
-> Docker is installed remoting under root in this example for simplification. Information of Docker security can be found in the [Docker docs](https://docs.docker.com/engine/security/#docker-daemon-attack-surface)
+::: info
+These scripts required sudo privileges, see [Docker notes regarding security](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script).
+Full repository based [script available here](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository).
+Docker is installed remoting under root in this example for simplification. Information of Docker security can be found in the [Docker docs](https://docs.docker.com/engine/security/#docker-daemon-attack-surface)
+:::
 
 ### Docker-compose install
 
@@ -95,7 +101,10 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 Run `docker-compose --version` to confirm.
-> See [DigitalOcean article](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#step-1-%E2%80%94-installing-docker-compose) for details on ensuring you have the latest version installed.
+
+::: info
+See [DigitalOcean article](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04#step-1-%E2%80%94-installing-docker-compose) for details on ensuring you have the latest version installed.
+:::
 
 ### Get nginx reverse proxy and letsencrypt companion running
 Now we have Docker and docker-compose installed on our new Droplet, we want to setup an nginx reverse proxy running in Docker. This will handle mapping requests to specific domain/subdomain requests to specific docker applications that have matching configuration as well as TLS registration via LetEncrypt. When a new docker container starts up and joins the bridge network, the nginx and letsencrypt companion detect the new application and look to see if routing and TLS certificate is needed.
@@ -165,7 +174,10 @@ To confirm these are running, you can run `docker ps` so have a look at what con
 Now our droplet server is all setup to host our docker applications, we want to make referring to our server easier by setting up a DNS record.
 
 Specifically, we want to create an `A` record pointing to our Floating IP of our Droplet server.
-> You will need to use your DNS provider service to manage the DNS records of your domains.
+
+::: info
+You will need to use your DNS provider service to manage the DNS records of your domains.
+:::
 
 ## GitHub Repository Setup
 With the Droplet server all setup, first we'll need an application to deploy!
@@ -178,7 +190,10 @@ cd <project name>
 ```
 
 We are going to use `x new web` as a command to create a blank ServiceStack application. Run this in your newly cloned repository folder, the project name will be derived from the repository directory name.
-> If you create the project in a new directory before hand and want to name it, use `x new web <project name>`.
+
+::: info
+If you create the project in a new directory beforehand and want to name it, use `x new web <project name>`.
+:::
 
 The `x new` command gives us a working ServiceStack project from a template, `x mix` allows us to add additional templated files that work with templated ServiceStack projects.
 
@@ -202,7 +217,10 @@ Files provided by the `release-ghr-vanilla` are:
 
 ### Make sure GitHub `Enable improved container support` is turned on
 The account or organization of your repository at the time of writing needs to "Enable improved container support". 
-> This step may no longer be required once Improved Container Support is generally available.
+
+::: info
+This step may no longer be required once Improved Container Support is generally available.
+:::
 
 Goto: 
 
@@ -213,7 +231,9 @@ Goto:
 - select `Enable improved container support`
 - Save.
 
-> See [GitHub Docs](https://docs.github.com/en/packages/guides/enabling-improved-container-support) for details. 
+::: info
+See [GitHub Docs](https://docs.github.com/en/packages/guides/enabling-improved-container-support) for details.
+:::
 
 Once these steps are done, our GitHub Actions will be able to push Docker images to GitHub Container Registry.
 
@@ -262,8 +282,11 @@ gh secret set LETSENCRYPT_EMAIL -b"<LETSENCRYPT_EMAIL, Email address for your TL
 ```
 
 The `CR_PAT` can be created via your [GitHub Settings->Developer Settings->Personal access tokens page](https://github.com/settings/tokens/), and selecting the `write:packages` permission. Copy the token somewhere secure, so we can use it when creating the secrets.
-> Both the creation of the token and use in secrets are *only available on creation*, so if you want/need to reuse this, note it down somewhere secure like your password manager for reuse.
-> The `CR_PAT` (Container Registry Personal Access Token) is required during the beta of GitHub Container Registry, however once released the standard `secrets.GITHUB_TOKEN` built into GitHub Actions should be able to be used and is recommended to avoid higher data transfer charges.
+
+::: info
+Both the creation of the token and use in secrets are *only available on creation*, so if you want/need to reuse this, note it down somewhere secure like your password manager for reuse.
+The `CR_PAT` (Container Registry Personal Access Token) is required during the beta of GitHub Container Registry, however once released the standard `secrets.GITHUB_TOKEN` built into GitHub Actions should be able to be used and is recommended to avoid higher data transfer charges.
+:::
 
 Repository secrets can be created under Settings->Secrets.
 
@@ -278,8 +301,10 @@ gh release create v1 -t "v1" --notes ""
 
 Go to the Actions tab in your repository to see the progress of your deployment.
 
-> The initial deployment might take upto a minute for LetsEncrypt to generate and use the certificate with your domain. Make sure your DNS is all setup **before publishing the Release**, otherwise further delays related to DNS TTL will likely occur.
-> If you are having problems with your app hosting, be sure to configure the logs in the nginx and your app docker containers for any startup issues. You can also run in attached mode to watch the output of these containers via `docker-compose -f ~/nginx-proxy-compose.yml up`.
+::: info
+The initial deployment might take upto a minute for LetsEncrypt to generate and use the certificate with your domain. Make sure your DNS is all setup **before publishing the Release**, otherwise further delays related to DNS TTL will likely occur.
+If you are having problems with your app hosting, be sure to configure the logs in the nginx and your app docker containers for any startup issues. You can also run in attached mode to watch the output of these containers via `docker-compose -f ~/nginx-proxy-compose.yml up`.
+:::
 
 ### GitHub Container Registry Pricing
 If you're already have a Pro or Team plan, you get free allowances to using the GitHub Container Registry. It has the [same pricing as the GitHub Packages](https://docs.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-packages#about-billing-for-github-packages) product which is summarized as the following for Pro or Team.
@@ -290,7 +315,10 @@ If you're already have a Pro or Team plan, you get free allowances to using the 
 - Additional transfer out $0.50 per GB (GitHub Actions are free)
 
 With Docker images though, they can get large pretty quickly. While GitHub Container Registry is still in beta, it is free to use but additional storage and transfer costs are something to keep in mind. Hopefully use of retention policies and other features can help manage to keep these prices down.
-> Once GitHub Container Registry is released the standard `secrets.GITHUB_TOKEN` built into GitHub Actions should be able to be used and is recommended to [avoid higher data transfer charges](https://docs.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-packages#about-billing-for-github-packages).
+
+::: info
+Once GitHub Container Registry is released the standard `secrets.GITHUB_TOKEN` built into GitHub Actions should be able to be used and is recommended to [avoid higher data transfer charges](https://docs.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-packages#about-billing-for-github-packages).
+:::
 
 ### Wrapping up
 Having a CI process from the very start of a project/prototype is something that pays off quickly, even as a solo developer. The `release-ghr-vanilla` template is designed to help get that process started by providing a "no fuss" pattern for prototyping ideas and keeping costs down while giving a dockerized path forward as your hosting requirements change. GitHub Actions provide a great way to build and maintain your CI process right where your code lives, and even though GitHub Container Repository is in the early stage, we think it provides a simplified workflow that works well for the indie/solo developer as well as teams. We intend to put together more of these templates and patterns for different use cases, feel free to give us feedback and let us know what you'd like to see!
