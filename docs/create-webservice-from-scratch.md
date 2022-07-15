@@ -65,7 +65,7 @@ Each service in ServiceStack consists of three parts:
 - Service implementation
 - Response DTO
 
-That's the core philosophy in ServiceStack. Each service has a strongly-typed, code-first (normal POCOs) request DTO and response DTO. You can read a detailed explanation what advantages exist if you're using DTOs in the [ReadMe](https://github.com/ServiceStack/ServiceStack/blob/master/README.md) or in [Why should I use ServiceStack?] (/why-servicestack).
+That's the core philosophy in ServiceStack. Each service has a strongly-typed, code-first (normal POCOs) Request DTO and response DTO. You can read a detailed explanation what advantages exist if you're using DTOs in the [ReadMe](https://github.com/ServiceStack/ServiceStack/blob/master/README.md) or in [Why should I use ServiceStack?] (/why-servicestack).
 
 1) Create the name of your Web Service (i.e. the Request DTO)
 

@@ -9,14 +9,14 @@ When you create a service, there are by default three endpoints:
 - SOAP endpoint: `/[soap11|soap12]`
 - Default endpoint: `/[xml|json|html|jsv|csv]/[reply|oneway]/[servicename]`
 
-The preferred way to call the webservice is mostly using the REST endpoint. As you have seen, user-defined REST endpoints can be configured with the `Route` attribute for each request DTO.
+The preferred way to call the webservice is mostly using the REST endpoint. As you have seen, user-defined REST endpoints can be configured with the `Route` attribute for each Request DTO.
 
 But you can also call your service by using the default endpoint, without configuring a REST url with the default endpoint.
 Of course there's always the option to use the SOAP endpoint.
 
 ## Sample requests:
 
-The possible requests for the following request DTO are:
+The possible requests for the following Request DTO are:
 
 ```csharp
 [Route("/hello")]
@@ -70,7 +70,7 @@ POST example.org/json/reply/Hello
 
 ## Option 2
 
-But you don't need to pass the `Name` of the request DTO in the request body. There's also the possibility to set the value of `Name` with URL parameters (works only with REST and default endpoint of course).
+But you don't need to pass the `Name` of the Request DTO in the request body. There's also the possibility to set the value of `Name` with URL parameters (works only with REST and default endpoint of course).
 
 ### REST endpoint:
 
@@ -90,7 +90,7 @@ You can also combine the two approaches.
 ## Option 3
 
 Last but not least there exists another way to set the value of `Name`! But this works only with the REST endpoint:
-If you add the following mapping to the request DTO above:
+If you add the following mapping to the Request DTO above:
 
 ```csharp
 [Route("/hello/{Name}")]

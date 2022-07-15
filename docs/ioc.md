@@ -13,7 +13,7 @@ Auto-wiring out-of-the-box, namely:
 
 - [Services](/your-first-webservice-explained)
 - [Request and Response Filter attributes](/filter-attributes) _(are executed before a service gets called)_
-- [Validators](/validation) _(validates a request DTO before the service gets called)_
+- [Validators](/validation) _(validates a Request DTO before the service gets called)_
 
 For each of these features, dependencies are resolved for all parameters in the constructor that has the most arguments as well as all public properties.
 

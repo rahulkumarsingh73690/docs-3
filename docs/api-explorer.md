@@ -627,8 +627,8 @@ Now our `label` and `placeholder` changes are visible and trying to submit a val
     <img src="/images/apiexplorer/create-customer-custom-input.png">
 </a>
 
-Values for `InputInfo` are merged with the `[Input]` attribute that can be used on request DTO class properties.
-This allows you to keep the default layout while still controlling `Input` options directly on your request DTO class.
+Values for `InputInfo` are merged with the `[Input]` attribute that can be used on Request DTO class properties.
+This allows you to keep the default layout while still controlling `Input` options directly on your Request DTO class.
 
 ```csharp
 public class CreateCustomers

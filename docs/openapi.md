@@ -185,7 +185,7 @@ Plugins.Add(new OpenApiFeature
 
 ### Miscellaneous configuration options
 
-- `DisableAutoDtoInBodyParam` - disables adding `body` parameter for request DTO to operations
+- `DisableAutoDtoInBodyParam` - disables adding `body` parameter for Request DTO to operations
 - `LogoUrl` - url of the logo image for Swagger UI
 
 Example:

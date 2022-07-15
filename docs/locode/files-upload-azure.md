@@ -29,7 +29,7 @@ To use the `AzureBlobVirtualFiles` you will need the `ServiceStack.Azure` NuGet 
 
 ## Using File Upload Locations in APIs
 
-With just the above configured, we can now use them in our APIs. The `[UploadTo("name")]` attribute is used with an AutoQuery request DTO and related database model class. For example, the AzureFileItem table contains metadata about file access and is referenced by AzureFile table which contains our file metadata.
+With just the above configured, we can now use them in our APIs. The `[UploadTo("name")]` attribute is used with an AutoQuery Request DTO and related database model class. For example, the AzureFileItem table contains metadata about file access and is referenced by AzureFile table which contains our file metadata.
 
 In the `FileBlazor` demo, we store the file metadata in one table which is related back to another to store additional metadata we use to limit file access.
 

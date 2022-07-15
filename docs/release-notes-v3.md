@@ -966,7 +966,7 @@ More info about autentication can be found in the [wiki documentation](/authenti
 
 ## Validators
 
-When you enable the `ValidationFeature()` plugin you can create a **validator for every request DTO** you have, with **smart, terse fluent syntax** that can handle most use-cases, e.g:
+When you enable the `ValidationFeature()` plugin you can create a **validator for every Request DTO** you have, with **smart, terse fluent syntax** that can handle most use-cases, e.g:
 
 ```csharp
     public class UserValidator : UserValidator<ModelToValidate> {

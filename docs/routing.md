@@ -573,7 +573,7 @@ public object Post(Upload request)
 
 ### Reading directly from the Request Stream
 
-Instead of registering a custom binder you can skip the serialization of the request DTO, you can add the [IRequiresRequestStream](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequiresRequestStream.cs) interface to directly retrieve the stream without populating the request DTO.
+Instead of registering a custom binder you can skip the serialization of the Request DTO, you can add the [IRequiresRequestStream](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequiresRequestStream.cs) interface to directly retrieve the stream without populating the Request DTO.
 
 ```csharp
 //Request DTO

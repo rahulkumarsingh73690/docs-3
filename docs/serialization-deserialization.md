@@ -104,7 +104,7 @@ appHost.RegisterRequestBinder<MyRequest>(httpReq => ... requestDto);      // or:
 appHost.RequestBinders.Add(typeof(MyRequest), httpReq => ... requestDto);
 ```
 
-This gives you access to the IHttpRequest object letting you parse it manually so you can construct and return the strong-typed request DTO manually which will be passed to the service instead.
+This gives you access to the IHttpRequest object letting you parse it manually so you can construct and return the strong-typed Request DTO manually which will be passed to the service instead.
 
 ### Uploading Files
 
@@ -142,7 +142,7 @@ public object Post(Upload request)
 
 ### Reading directly from the Request Stream
 
-Instead of registering a custom binder you can skip the serialization of the request DTO, you can add the [IRequiresRequestStream](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequiresRequestStream.cs) interface to directly retrieve the stream without populating the request DTO.
+Instead of registering a custom binder you can skip the serialization of the Request DTO, you can add the [IRequiresRequestStream](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack.Interfaces/Web/IRequiresRequestStream.cs) interface to directly retrieve the stream without populating the Request DTO.
 
 ```csharp
 //Request DTO

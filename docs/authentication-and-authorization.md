@@ -572,7 +572,7 @@ new GoogleOAuth2Provider {
 #### Client Authentication with AccessToken
 
 Clients can utilize this feature with the new `AccessToken` and `AccessTokenSecret` properties on the existing
-`Authenticate` request DTO, sent with the **provider** that the AccessToken is for, e.g:
+`Authenticate` Request DTO, sent with the **provider** that the AccessToken is for, e.g:
 
 ```csharp
 var response = client.Post(new Authenticate {
@@ -650,7 +650,7 @@ If you want, that authentication is only required for GET and PUT requests for e
 
 ServiceStack also includes a built-in permission based authorization mechanism. More details about how Roles and Permissions work is in this [StackOverflow Answer](http://stackoverflow.com/a/12096813).
 
-Your request DTO can require specific permissions:
+Your Request DTO can require specific permissions:
 
 ```csharp
 [Authenticate]

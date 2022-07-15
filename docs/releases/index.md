@@ -1826,7 +1826,7 @@ This capability is now available on the popular OAuth Providers below:
 ### Client Authentication with AccessToken
 
 Clients can utilize this feature with the new `AccessToken` and `AccessTokenSecret` properties on the existing
-`Authenticate` request DTO, sent with the **provider** that the AccessToken is for, e.g:
+`Authenticate` Request DTO, sent with the **provider** that the AccessToken is for, e.g:
 
 ```csharp
 var response = client.Post(new Authenticate {

@@ -871,7 +871,7 @@ C# version once the Blazor App loads. The difference is that it prerenders "comp
 
 ![](./images/templates/fileupload-blazor-usage-example.png)
 
-For provided as a Tailwind control, the ServiceStack.Blazor package has a file upload control that can be used to upload files along with a request DTO.
+For provided as a Tailwind control, the ServiceStack.Blazor package has a file upload control that can be used to upload files along with a Request DTO.
 
 | Property         | Description                                                                                         |
 |------------------|-----------------------------------------------------------------------------------------------------|
@@ -907,7 +907,7 @@ public class MyDtoWithFileUpload
 }
 ```
 
-Since the model class `MyDtoWithFileUpload` stores the `UploadLocation` path of the file in the `FilePath` property, the `CreateMyDtoWithFileUpload` request DTO applies the `UploadTo("fs")` attribute to a matching property.
+Since the model class `MyDtoWithFileUpload` stores the `UploadLocation` path of the file in the `FilePath` property, the `CreateMyDtoWithFileUpload` Request DTO applies the `UploadTo("fs")` attribute to a matching property.
 
 To use the Blazor `FileUpload` client control then send the file and associated data with a `CreateMyDtoWithFileUpload` request instance.
 
@@ -930,6 +930,6 @@ To use the Blazor `FileUpload` client control then send the file and associated 
 
 ![](./images/templates/fileupload-blazor-example.png)
 
-The `FilePropertyName` matches the property name that is annotated by the `UploadTo` attribute. The `Request` is the instance of the request DTO. This must match the related endpoint.
+The `FilePropertyName` matches the property name that is annotated by the `UploadTo` attribute. The `Request` is the instance of the Request DTO. This must match the related endpoint.
 
 
