@@ -869,32 +869,31 @@ C# version once the Blazor App loads. The difference is that it prerenders "comp
 
 ## ServiceStack.Blazor FileUpload Control
 
-![](./images/templates/fileupload-blazor-usage-example.png)
+The File Upload UI component used in our [File Blazor Demo](/locode/files-blazor) has been extracted into a reusable Blazor component you can utilize in your own apps, here's what it looks like on [file.locode.dev](https://file.locode.dev):
 
-For provided as a Tailwind control, the ServiceStack.Blazor package has a file upload control that can be used to upload files along with a Request DTO.
+![](/images/templates/fileupload-blazor-usage-example.png)
 
-| Property         | Description                                                                                         |
-|------------------|-----------------------------------------------------------------------------------------------------|
-| Request          | Request DTO object instance populated with into to be sent to your endpoint.                        |
-| FilePropertyName | The name of the property that is used to reference your file, used with the `[UploadTo]` attribute. |
+It's a simple control that takes advantage of ServiceStack's declarative [Managed File Uploads](/locode/files) support to effortlessly enable multiple file uploads that can be declaratively added to any Request DTO, which only requires setting 2 properties:
 
-### Example usage
+| Property         | Description                                                                                        |
+|------------------|----------------------------------------------------------------------------------------------------|
+| Request          | Request DTO object instance populated with into to be sent to your endpoint                        |
+| FilePropertyName | The name of the property that is used to reference your file, used with the `[UploadTo]` attribute |
 
-Below is an example of an AutoQuery CRUD service that references a file used with the [`FileUploadFeature` plugin](./locode/files-upload-filesystem.md).
+#### Example usage
+
+Below is an AutoQuery CRUD API example that references an upload location defined when configuring the [FileUploadFeature Plugin](/locode/files-upload-filesystem.md):
 
 ```csharp
 public class CreateMyDtoWithFileUpload : ICreateDb<MyDtoWithFileUpload>, IReturn<IdResponse>
 {
-    [Input(Type = "file"), UploadTo("fs")]
+    [Input(Type="file"), UploadTo("fs")]
     public string FilePath { get; set; }
     
     public string OtherData { get; set; }
 }
 
-public class QueryFileUpload : QueryDb<MyDtoWithFileUpload>
-{
-    
-}
+public class QueryFileUpload : QueryDb<MyDtoWithFileUpload> {}
 
 public class MyDtoWithFileUpload
 {
@@ -907,9 +906,9 @@ public class MyDtoWithFileUpload
 }
 ```
 
-Since the model class `MyDtoWithFileUpload` stores the `UploadLocation` path of the file in the `FilePath` property, the `CreateMyDtoWithFileUpload` Request DTO applies the `UploadTo("fs")` attribute to a matching property.
+When calling this API, the Managed File Uploads feature will upload the HTTP File Upload included in the API request to the configured **fs** upload location and populate the uploaded path to the `FilePath` Request DTO property. 
 
-To use the Blazor `FileUpload` client control then send the file and associated data with a `CreateMyDtoWithFileUpload` request instance.
+The Blazor `FileUpload` client control can handle the [C# File Upload API Request](/locode/files.html#uploading-files-from-c) by giving it an instance of the Request DTO instance we want to send and the DTO property it should populate:
 
 ```razor
 @page "/file-upload"
@@ -921,15 +920,12 @@ To use the Blazor `FileUpload` client control then send the file and associated 
 
     // Any additional values should be populated 
     // on the request object before the upload starts.
-    CreateMyDtoWithFileUpload request = new()
-    {
+    CreateMyDtoWithFileUpload request = new() {
         OtherData = "Test"
     };
 }
 ```
 
-![](./images/templates/fileupload-blazor-example.png)
+![](/images/templates/fileupload-blazor-example.png)
 
 The `FilePropertyName` matches the property name that is annotated by the `UploadTo` attribute. The `Request` is the instance of the Request DTO. This must match the related endpoint.
-
-
