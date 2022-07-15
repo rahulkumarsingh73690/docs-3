@@ -869,6 +869,8 @@ C# version once the Blazor App loads. The difference is that it prerenders "comp
 
 ## ServiceStack.Blazor FileUpload Control
 
+![](./images/templates/fileupload-blazor-usage-example.png)
+
 For provided as a Tailwind control, the ServiceStack.Blazor package has a file upload control that can be used to upload files along with a request DTO.
 
 | Property         | Description                                                                                         |
@@ -913,7 +915,7 @@ To use the Blazor `FileUpload` client control then send the file and associated 
 @page "/file-upload"
 <h3>FileUploadPage</h3>
 
-<FileUpload Request="request" FilePropertyName="'FilePath'"></FileUpload>
+<FileUpload Request="request" FilePropertyName="@nameof(CreateMyDtoWithFileUpload.FilePath)" />
 
 @code {
 
