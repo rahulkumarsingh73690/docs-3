@@ -62,6 +62,10 @@
               "link": "/locode/files"
           },
           {
+            "text": "File Blazor Demo",
+            "link": "/locode/files-blazor"
+          },
+          {
               "text": "File System",
               "link": "/locode/files-upload-filesystem"
           },
