@@ -913,7 +913,7 @@ To use the Blazor `FileUpload` client control then send the file and associated 
 @page "/file-upload"
 <h3>FileUploadPage</h3>
 
-<FileUpload Request="request" FilePropertyName="'FilePath'"></FileUpload>
+<FileUpload Request="request" FilePropertyName="@nameof(CreateMyDtoWithFileUpload.FilePath)" />
 
 @code {
 
