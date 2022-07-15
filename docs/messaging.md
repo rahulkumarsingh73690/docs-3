@@ -424,7 +424,7 @@ public class MqServices : Service
     public void Any(PublishTokenMq request)
     {
         var mqRequest = request.ConvertTo<AuthTokenMq>();
-        mqRequest.BearerToken = Request.GetSessionId();
+        mqRequest.BearerToken = Request.GetJwtToken();
         PublishMessage(mqRequest);
     }
 }
