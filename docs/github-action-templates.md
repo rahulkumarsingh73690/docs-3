@@ -7,11 +7,11 @@ If your project is on GitHub, GitHub Actions are a great built in way to have an
 
 GitHub Actions are also very cost effective thanks to the generous free minutes allowance and additional **3000 /month** minutes with every paid team member. 
 
-To make taking advantage of GitHub Actions with your ServiceStack applications, we've created multiple [mix](/mix) templates to setup your CI process quickly. Most [Project Templates](/templates-overview) provide a build + test step on every commit as well as combinations of Docker image hosting and application deployments focusing on portability.
+To make taking advantage of GitHub Actions with your ServiceStack applications, we've created multiple [mix](/mix-tool) templates to setup your CI process quickly. Most [Project Templates](/templates-overview) provide a build + test step on every commit as well as combinations of Docker image hosting and application deployments focusing on portability.
 
 Since hosting architectures vary so much, these templates are designed to get you *started* with a simple setup where you can iterate quickly as you develop application. As hosting requirements change, the deployment GitHub Action workflow `yml` files can be customized to suit.
 
-The simple build and test step is available using the [build](https://gist.github.com/gistlyn/856bd13c38ad388ef6d48d06c32ab395), mix template, whilst the [mix](/mix) deployment templates uses the naming convention `release-{docker image repository}-{hosting configuration}`. 
+The simple build and test step is available using the [build](https://gist.github.com/gistlyn/856bd13c38ad388ef6d48d06c32ab395), mix template, whilst the [mix](/mix-tool) deployment templates uses the naming convention `release-{docker image repository}-{hosting configuration}`. 
 
 For example, `release-ghr-vanilla` where **ghr** uses GitHub for the Docker Repository and `vanilla` for our minimalist deployment that uses SSH and **docker-compose**.
 
