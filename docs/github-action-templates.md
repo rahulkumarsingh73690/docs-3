@@ -5,50 +5,26 @@ slug: github-action-templates
 
 If your project is on GitHub, GitHub Actions are a great built in way to have an automated Continuous Integration (CI) setup where the configuration is committed to the same repository where your project lives.
 
-GitHub Actions are also very cost effective thanks to the generous free minutes allowance and additional 3000/month minutes with every paid team member. 
+GitHub Actions are also very cost effective thanks to the generous free minutes allowance and additional **3000 /month** minutes with every paid team member. 
 
-To make taking advantage of GitHub Actions with your ServiceStack applications, we've created multiple `mix` templates to have your CI process setup quickly. Templates provide a build + test step on every commit as well as combinations of Docker image hosting and application deployments focused on portability over scalability. 
+To make taking advantage of GitHub Actions with your ServiceStack applications, we've created multiple [mix](/mix) templates to setup your CI process quickly. Most [Project Templates](/templates-overview) provide a build + test step on every commit as well as combinations of Docker image hosting and application deployments focusing on portability.
 
-Since hosting architectures can vary so much, these templates are designed to get you *started* with a simple setup where you can iterate quickly while prototyping your application. As your hosting needs change, the GitHub Actions specifics around deployment can be altered in the provided GitHub Action workflow `yml` files.
+Since hosting architectures vary so much, these templates are designed to get you *started* with a simple setup where you can iterate quickly as you develop application. As hosting requirements change, the deployment GitHub Action workflow `yml` files can be customized to suit.
 
-The simple build and test step is available using the `mix` name of `build`, while the deployment `mix` templates use the naming convension `release-{docker image repository}-{hosting configuration}`. For example, `release-ghr-vanilla` where `ghr` uses GitHub for the Docker Repository and `vanilla` for our minimalist deployment that uses SSH and `docker-compose`.
+The simple build and test step is available using the [build](https://gist.github.com/gistlyn/856bd13c38ad388ef6d48d06c32ab395), mix template, whilst the [mix](/mix) deployment templates uses the naming convention `release-{docker image repository}-{hosting configuration}`. 
+
+For example, `release-ghr-vanilla` where **ghr** uses GitHub for the Docker Repository and `vanilla` for our minimalist deployment that uses SSH and **docker-compose**.
 
 ## GitHub Action Templates
 
 Templates currently available are:
 
-<table style="width:100%">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th style="text-align: center">Docker Repository</th>
-      <th style="text-align: right">Deployment and Hosting</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">release-ghr-vanilla</code></td>
-      <td style="text-align: center">GitHub Container Repository</td>
-      <td style="text-align: right">SSH + <code class="language-plaintext highlighter-rouge">docker-compose</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">release-ecr-vanilla</code></td>
-      <td style="text-align: center">AWS Elastic Container Repository</td>
-      <td style="text-align: right">SSH + <code class="language-plaintext highlighter-rouge">docker-compose</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">release-hub-vanilla</code></td>
-      <td style="text-align: center">Docker Hub</td>
-      <td style="text-align: right">SSH + <code class="language-plaintext highlighter-rouge">docker-compose</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">release-ecr-aws</code></td>
-      <td style="text-align: center">AWS Elastic Container Repository</td>
-      <td style="text-align: right">AWS ECS without Application Load Balancer</td>
-    </tr>
-  </tbody>
-</table>
-
+| Name                    | Docker Repository                | Deployment and Hosting        | 
+|-------------------------|----------------------------------|-------------------------------|
+| **release-ghr-vanilla**	| GitHub Container Repository	     | SSH + docker-compose          |
+| **release-ecr-vanilla**	| AWS Elastic Container Repository | SSH + docker-compose          | 
+| **release-hub-vanilla**	| Docker Hub                       | SSH + docker-compose          | 
+| **release-ecr-aws**   	| AWS Elastic Container Repository | AWS ECS without Load Balancer | 
 
 ### release-ghr-vanilla
 Using GitHub Container Repository (ghcr.io) and deploying to a Linux host with `docker-compose` via SSH, this provides a GitHub centric option for prototyping your application. A [full tutorial using Digital Ocean as our Linux host provider is available](https://docs.servicestack.net/do-github-action-mix-deployment) as well as an accompanying video.

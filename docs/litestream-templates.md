@@ -7,13 +7,13 @@ The Litestream mix templates can incorporate the use of [Litestream](https://lit
 
 Litestream runs as a dedicated [sidecar](https://docs.microsoft.com/en-us/azure/architecture/patterns/sidecar) container watching for updates to your SQLite database, replicating those changes to your configured storage target like AWS S3, Azure Blob Storage, and SFTP.
 
-![](./images/litestream/litestream-mix-diagram-s3.png)
+![](/images/litestream/litestream-mix-diagram-s3.png)
 
-The template provides two files that are designed follow the [Linux SSH deployment using GitHub Actions](./github-action-templates.md) built into some templates.
+The template provides two files that are designed follow the [Linux SSH deployment using GitHub Actions](/github-action-templates.md) built into some templates.
 
 Just like most of the ServiceStack project templates, it uses a single Linux host with Docker and Docker-Compose running an NGINX container with Lets Encrypt companion to handle automated TLS certificate management. This could be on AWS, Azure, DigitalOcean or your own server, the only requirements are that it has SSH access, with Docker and Docker-Compose installed.
 
-![](./images/actions/cloudcraft-host-digram-release-docker-aws.png)
+![](/images/actions/cloudcraft-host-digram-release-docker-aws.png)
 
 ## Docker Compose Template
 
@@ -59,14 +59,14 @@ During the GitHub Action release workflow, a docker-compose YAML file is produce
 Since Litestream is tied to deployment and hosting environment, we have made several templates that work with specific templates.
 Below is a table matching project templates to mix templates including different storage targets.
 
-| Project Template | Litestream Templates                                                         | 
-|------------------|------------------------------------------------------------------------------|
-| web              | litestream-aws,litestream-azure,litestream-sftp                              | 
-| vue-ssg          | jamstack-litestream-aws, jamstack-litestream-azure, jamstack-litestream-sftp |
-| vue-vite         | jamstack-litestream-aws, jamstack-litestream-azure, jamstack-litestream-sftp |
-| nextjs           | jamstack-litestream-aws, jamstack-litestream-azure, jamstack-litestream-sftp |
-| blazor-wasm      | blazor-litestream-aws, blazor-litestream-azure, blazor-litestream-sftp       |
-| blazor-tailwind  | blazor-litestream-aws, blazor-litestream-azure, blazor-litestream-sftp       |
+| Project Template     | AWS S3                  | Azure Blob Storage        | SFTP (generic)           | 
+|----------------------|-------------------------|---------------------------|--------------------------|
+| **web**              | litestream-aws          | litestream-azure          | litestream-sftp          | 
+| **blazor-tailwind**  | blazor-litestream-aws   | blazor-litestream-azure   | blazor-litestream-sftp   |
+| **blazor-wasm**      | blazor-litestream-aws   | blazor-litestream-azure   | blazor-litestream-sftp   |
+| **vue-ssg**          | jamstack-litestream-aws | jamstack-litestream-azure | jamstack-litestream-sftp |
+| **vue-vite**         | jamstack-litestream-aws | jamstack-litestream-azure | jamstack-litestream-sftp |
+| **nextjs**           | jamstack-litestream-aws | jamstack-litestream-azure | jamstack-litestream-sftp |
 
 ## GitHub Action Workflow
 
@@ -96,4 +96,4 @@ To automate deployment, creation of additional GitHub Action Secrets is required
 | SFTP_USERNAME      | SFTP Username for authentication | username         |
 | SFTP_PASSWORD      | SFTP Password for authentication | password         |
 | SFTP_HOST          | SFTP domain name or IP address   | sftp.example.com |
- | SFTP_PORT          | SFTP port used to access         | 22               |
+| SFTP_PORT          | SFTP port used to access         | 22               |
