@@ -105,7 +105,7 @@ class RequestLogsFeature
     // RequestLogs service Route, default is /requestlogs
     string AtRestPath = "/requestlogs";
 
-    // Size of InMemoryRollingRequestLogger circular buffer
+    // Size of memory logger circular buffer
     int? Capacity;
 
     // Turn On/Off Session Tracking
@@ -148,10 +148,10 @@ class RequestLogsFeature
     // Customize Request Log Entry
     Action<IRequest, RequestLogEntry> RequestLogFilter;
 
-    // Never attempt to serialize these types
+    // Ignore logging and serializing these Request DTOs
     List<Type> IgnoreTypes; = new();
     
-    // Allow ignoring 
+    // Use custom Ignore Request DTO predicate
     Func<object,bool> IgnoreFilter = DefaultIgnoreFilter;
 
     // Default take, if none is specified
