@@ -30,7 +30,7 @@ public override void Configure(Container container)
 }
 ```
 
-![](https://raw.githubusercontent.com/ServiceStack/Assets/master/img/release-notes/ServiceRegistration.png)
+<img class="py-20" src="/images/gateway/consul-single.svg">
 
 Once registered, the Service Gateway works as you'd expect where internal requests are executed in process
 and external requests queries the Consul registry to discover the appropriate and available Service to call:
@@ -47,7 +47,7 @@ public class MyService : Service
 }
 ```
 
-![RequestDTO Service Discovery](https://raw.githubusercontent.com/MacLeanElectrical/servicestack-discovery-consul/master/assets/RequestDTOServiceDiscovery.png)
+<img class="py-20" src="/images/gateway/consul-multi.svg" alt="Request DTO Service Discovery">
 
 ## [ServiceStack.Discovery.Redis](https://github.com/rsafier/ServiceStack.Discovery.Redis)
 
