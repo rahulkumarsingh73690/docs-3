@@ -95,67 +95,72 @@ The optional `capacity` configures Redis Request Logger as a rolling log where i
 
 Like other ServiceStack [Plugins](/plugins) the `RequestLogsFeature` has a number of configuration options that can be specified at registration to customize Request Logging:
 
-<table class="table">
-<thead>
-<tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Description</th>
-</tr>
-</thead>
-<tr>
-    <td>AtRestPath</td>
-    <td>string</td>
-    <td>RequestLogs service Route, default is `/requestlogs`</td>
-</tr>
-<tr>
-    <td>EnableSessionTracking</td>
-    <td>bool</td>
-    <td>Turn On/Off Session Tracking</td>
-</tr>
-<tr>
-    <td>EnableRequestBodyTracking</td>
-    <td>bool</td>
-    <td>Turn On/Off Logging of Raw Request Body, default is Off</td>
-</tr>
-<tr>
-    <td>EnableResponseTracking</td>
-    <td>bool</td>
-    <td>Turn On/Off Tracking of Responses</td>
-</tr>
-<tr>
-    <td>EnableErrorTracking</td>
-    <td>bool</td>
-    <td>Turn On/Off Tracking of Exceptions</td>
-</tr>
-<tr>
-    <td>Capacity</td>
-    <td>int?</td>
-    <td>Size of InMemoryRollingRequestLogger circular buffer</td>
-</tr>
-<tr>
-    <td>RequiredRoles</td>
-    <td>string[]</td>
-    <td>Limit access to /requestlogs service to these roles</td>
-</tr>
-<tr>
-    <td>RequestLogger</td>
-    <td>IRequest
-        Logger</td>
-    <td>Change the RequestLogger provider. Default is InMemoryRollingRequestLogger</td>
-</tr>
-<tr>
-    <td>ExcludeRequestDtoTypes</td>
-    <td>Type[]</td>
-    <td>Don't log requests of these types. By default RequestLog's are excluded</td>
-</tr>
-<tr>
-    <td>HideRequestBody
-        ForRequestDtoTypes</td>
-    <td>Type[]</td>
-    <td>Don't log request bodys for services with sensitive information. By default Auth and Registration requests are hidden.</td>
-</tr>
-</table>
+
+```csharp
+class RequestLogsFeature 
+{
+    // Limit API access to users in role
+    string AccessRole = RoleNames.Admin;
+
+    // RequestLogs service Route, default is /requestlogs
+    string AtRestPath = "/requestlogs";
+
+    // Size of InMemoryRollingRequestLogger circular buffer
+    int? Capacity;
+
+    // Turn On/Off Session Tracking
+    bool EnableSessionTracking;
+
+    // Turn On/Off Logging of Raw Request Body, default is Off
+    bool EnableRequestBodyTracking;
+
+    // Turn On/Off Raw Request Body Tracking per-request
+    Func<IRequest, bool> RequestBodyTrackingFilter;
+
+    // Turn On/Off Tracking of Responses
+    bool EnableResponseTracking = false;
+
+    // Turn On/Off Tracking of Responses per-request
+    Func<IRequest, bool> ResponseTrackingFilter;
+    
+    // Turn On/Off Tracking of Exceptions
+    bool EnableErrorTracking = true;
+
+    // Don't log matching requests
+    Func<IRequest, bool> SkipLogging;
+
+    // Change the RequestLogger provider. Default is InMemoryRollingRequestLogger
+    IRequestLogger RequestLogger;
+
+    // Don't log requests of these types. By default RequestLog's are excluded
+    Type[] ExcludeRequestDtoTypes;
+
+    // Don't log request body's for services with sensitive information.
+    // By default Auth and Registration requests are hidden.
+    Type[] HideRequestBodyForRequestDtoTypes;
+    
+    // Don't log Response DTO Types
+    Type[] ExcludeResponseTypes;
+
+    // Limit logging to only Service Requests
+    bool LimitToServiceRequests = true;
+    
+    // Customize Request Log Entry
+    Action<IRequest, RequestLogEntry> RequestLogFilter;
+
+    // Never attempt to serialize these types
+    List<Type> IgnoreTypes; = new();
+    
+    // Allow ignoring 
+    Func<object,bool> IgnoreFilter = DefaultIgnoreFilter;
+
+    // Default take, if none is specified
+    int DefaultLimit = 100;
+
+    // Change what DateTime to use for the current Date (defaults to UtcNow)
+    Func<DateTime> CurrentDateFn = () => DateTime.UtcNow;
+}
+```
 
 ### Usage
 
