@@ -2,13 +2,17 @@
 title: Admin UI Validation
 ---
 
-As an **Admin** you have access to Validation Admin UI which will let you add declarative Type and Property Validators for each Request DTO in [Admin UI](/admin-ui). This can be quickly added to your host project with the [x mix script](/mix-tool) below:
+The DB Validation feature leverages the existing [Declarative Validation](/declarative-validation) infrastructure where it enables dynamically managing Request DTO Type and Property Validators from a RDBMS data source which immediately takes effect at runtime and can be optionally cached where they'll only need to be re-hydrated from the database after modification.
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/W5OJAlOxH98" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+This feature can be easily added to existing host projects with the [mix](/mix-tool) command:
 
 :::sh
 x mix validation-source
 :::
 
-Which will add the [Modular Startup](/modular-startup) validation configuration to your project:
+Which will add the [Modular Startup](/modular-startup) validation configuration to your project, utilizing your existing configured database:
 
 ```csharp
 [assembly: HostingStartup(typeof(MyApp.ConfigureValidation))]
@@ -20,7 +24,7 @@ public class ConfigureValidation : IHostingStartup
     // Add support for dynamically generated db rules
     public void Configure(IWebHostBuilder builder) => builder
         .ConfigureServices(services => services.AddSingleton<IValidationSource>(c =>
-            new OrmLiteValidationSource(c.Resolve<IDbConnectionFactory>())))
+            new OrmLiteValidationSource(c.Resolve<IDbConnectionFactory>(), HostContext.LocalCache)))
         .ConfigureAppHost(appHost => {
             // Create `ValidationRule` table if it doesn't exist in AppHost.Configure() or Modular Startup
             appHost.Resolve<IValidationSource>().InitSchema();
@@ -28,7 +32,7 @@ public class ConfigureValidation : IHostingStartup
 }
 ```
 
-Which the built-in [Validation Feature](/validation.html#validation-feature) detects to register the `GetValidationRules` and `ModifyValidationRules` APIs and enable its UI:
+Which the built-in [Validation Feature](/validation.html#validation-feature) detects before registering the `GetValidationRules` and `ModifyValidationRules` management APIs and enables the DB Validation Admin UI:
 
 <div class="block p-4 rounded shadow">
     <img src="/images/admin-ui/validation-empty.png">
@@ -50,21 +54,21 @@ validationSource.SaveValidationRules(new List<ValidateRule> {
 
 This can also be used to support alternative data sources by pre-populating validation rules in an `MemoryValidationSource`, although the recommendation would be to implement [IValidationSourceAdmin](https://github.com/ServiceStack/ServiceStack/blob/main/ServiceStack/src/ServiceStack.Interfaces/ValidationRule.cs) to get the full features of the Admin Validation UI.
 
-## Validation UI
+### Validation UI
 
-Before we can start adding validation rules we need to select the API we want to add them to, the tag groups provide a quick view popup to select APIs with a mouse whilst tags with a large number of APIs can benefit from the Autocomplete textbox to filter results.
+We can start adding validation rules after selecting the API we want to add them to, tag groups provide a quick view popup allowing APIs to be selected with just a mouse, whilst groups with a large number of APIs can benefit from the Autocomplete textbox results filter.
 
 <div class="block p-4 rounded shadow">
     <img src="/images/admin-ui/validation-category.png">
 </div>
 
-To help navigating between related APIs, AutoQuery APIs includes quick links to jump to different APIs with the same Data Model.
+The quick links help navigating between related AutoQuery APIs that allows jumping between different APIs with the same Data Model.
 
-In the validation editor you'll be able to create **Type** and **Property** Validation Rules that either make use of an existing **Validator** or you can enter a custom `#Script` expression that must validate to `true`. The Validator UI is smart and will list all built-in and Custom Script Methods returning `ITypeValidator` or `IPropertyValidator` that's registered in the remote instance. The pre-defined list of validators are displayed in a list of "quick pick" buttons that enables fast adding/editing of validation rules.
+In the validation editor you'll be able to create **Type** and **Property** Validation Rules that either make use of an existing **Validator** or you can enter a custom [#Script](https://sharpscript.net) expression that validates to `true`. The DB Validationo UI is smart and will list all built-in and Custom Script Methods returning `ITypeValidator` or `IPropertyValidator` that's registered in the remote instance. The pre-defined list of validators are displayed in a list of "quick pick" buttons that enables fast adding/editing of validation rules.
 
 ### Verified Rules
 
-The `ModifyValidationRules` Service that Studio calls performs a lot of validation to ensure the Validation rule is accurate including executing the validator to make sure it returns the appropriate validator type and checking the syntax on any **Script** validation rules to ensure it's valid.
+The `ModifyValidationRules` API used to save validation rules performs a number of checks to ensure any Validation rules are accurate including executing the validator to make sure it returns the appropriate validator type and checking the syntax on any **Script** validation rules to ensure it's valid.
 
 <div class="block p-4 rounded shadow">
     <img src="/images/admin-ui/validation-category-CategoryName.png">
@@ -75,13 +79,12 @@ The `ModifyValidationRules` Service that Studio calls performs a lot of validati
 </div>
 
 
-The `ModifyValidationRules` back-end Service also takes care of invalidating the validation rule cache so that any saved Validators are immediately applied. 
+The `ModifyValidationRules` back-end API also takes care of invalidating the validation rule cache so that any saved Validators are immediately applied. 
 
-Despite being sourced from a DB, after the first access the validation rules are cached in memory where they'd have similar performance to validators declaratively added on Request DTOs in code.
+Despite being sourced from a DB, after the first access the validation rules are cached in memory where they'd have similar performance profile to validators declaratively added on Request DTOs in code.
 
-After you add your validation rules they'll be immediately enforced when calling the API, e.g. in [API Explorer](/api-explorer) or [Locode](/locode/). Be mindful of what Validation Rule you're adding to which DTO, e.g. a validation rule added to **CreateCategory** API will only be applied when creating entities, e,g. not for full entity or partial field updates.
+After you add your validation rules they'll be immediately enforced when calling the API, e.g. in [API Explorer](/api-explorer) or [Locode](/locode/). Be mindful of what Validation Rule you're adding to which DTO, e.g. a validation rule added to **CreateCategory** API will **only be applied** when **creating** entities, e,g. not for full entity or partial field updates.
 
 <div class="mt-4 block p-4 rounded shadow">
     <img src="/images/admin-ui/validation-category-create.png">
 </div>
-
