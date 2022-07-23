@@ -16,13 +16,47 @@ The validators are incorporated into ServiceStack's existing Fluent Validation m
 
 ## Validation Feature
 
-All of ServiceStack's Fluent Validation features is encapsulated in the `ValidationFeature` plugin which can be registered in your AppHost with:
+All of ServiceStack's Fluent Validation features is encapsulated within the `ValidationFeature` plugin which is pre-registered by default.
 
-```csharp
-Plugins.Add(new ValidationFeature());
-```
+The Validator attributes are decoupled from any implementation and can be safely annotated on Request DTOs without adding any implementation dependencies. There's both Type Validators for applying API-level validation and property Validation attributes which enable an alternative declarative way of defining [Fluent Validation rules](/validation) on properties.
 
-## Property Validators
+### Type Validation Attributes
+
+| Attribute                      | Description                                                             |
+|--------------------------------|-------------------------------------------------------------------------|
+| `[ValidateRequest]`            | Validate Type against a custom Validator expression                     |
+| `[ValidateIsAuthenticated]`    | Protect access to this API to Authenticated Users only                  |
+| `[ValidateIsAdmin]`            | Protect access to this API to Admin Users only                          |
+| `[ValidateHasPermission]`      | Protect access to this API to only Users assigned with ALL Permissions  |
+| `[ValidateHasRole]`            | Protect access to this API to only Users assigned with ALL Roles        |
+
+### Property Validation Attributes
+
+| Attribute                      | Description                                                             |
+|--------------------------------|-------------------------------------------------------------------------|
+| `[Validate]`                   | Validate property against custom Validator expression                   |
+| `[ValidateCreditCard]`         | Validate property against Fluent Validation CreditCardValidator         |
+| `[ValidateEmail]`              | Validate property against Fluent's AspNetCoreCompatibleEmailValidator   |
+| `[ValidateEmpty]`              | Validate property against Fluent Validation EmptyValidator              |
+| `[ValidateEqual]`              | Validate property against Fluent Validation EqualValidator              |
+| `[ValidateExactLength]`        | Validate property against Fluent Validation ExactLengthValidator        |
+| `[ValidateExclusiveBetween]`   | Validate property against Fluent Validation ExclusiveBetweenValidator   |
+| `[ValidateGreaterThan]`        | Validate property against Fluent Validation GreaterThanValidator        |
+| `[ValidateGreaterThanOrEqual]` | Validate property against Fluent Validation GreaterThanOrEqualValidator |
+| `[ValidateInclusiveBetween]`   | Validate property against Fluent Validation InclusiveBetweenValidator   |
+| `[ValidateLength]`             | Validate property against Fluent Validation LengthValidator             |
+| `[ValidateLessThan]`           | Validate property against Fluent Validation LessThanValidator           |
+| `[ValidateLessThanOrEqual]`    | Validate property against Fluent Validation LessThanOrEqualValidator    |
+| `[ValidateMaximumLength]`      | Validate property against Fluent Validation MaximumLengthValidator      |
+| `[ValidateMinimumLength]`      | Validate property against Fluent Validation MinimumLengthValidator      |
+| `[ValidateNotEmpty]`           | Validate property against Fluent Validation NotEmptyValidator           |
+| `[ValidateNotEqual]`           | Validate property against Fluent Validation NotEqualValidator           |
+| `[ValidateNotNull]`            | Validate property against Fluent Validation NotNullValidator            |
+| `[ValidateNull]`               | Validate property against Fluent Validation NullValidator               |
+| `[ValidateRegularExpression]`  | Validate property against Fluent Validation RegularExpressionValidator  |
+| `[ValidateScalePrecision]`     | Validate property against Fluent Validation ScalePrecisionValidator     |
+
+## Property Validator Examples
 
 The Property Validator attributes provide an alternative way to apply Request DTO validation rules, the best way to demonstrate them 
 is showing the same example below implemented using Fluent Validation APIs:
@@ -355,10 +389,8 @@ Plugins.Add(new ValidationFeature {
 
 ## Type Validators
 
-In addition to Property Validators there's also new support for **Type Validators** which can be declaratively added to perform top-level 
-validation on Request DTOs.
-
-They behave and function the same as Property Validators where you can use either the typed or the generic `[ValidateRequest]` attribute.
+In addition to Property Validators there's also support for **Type Validators** which can be declaratively added to perform top-level 
+validation on Request DTOs. They behave and function the same as Property Validators where you can use either the typed or the generic `[ValidateRequest]` attribute.
 
 ServiceStack includes built-in Type Validator attributes for all [Authorization Filter Attributes](/authentication-and-authorization#the-authenticate-attribute) 
 but as they're decoupled from any implementation they can be safely annotated on Request DTOs without requiring any implementation dependencies.
@@ -479,9 +511,15 @@ public class ExampleValidators : ICreateDb<ExampleValidator>, IReturn<EmptyRespo
 ## DB Validation Rules
 
 Both Property and Type Validators can also be sourced from a **dynamic source** with both **Memory** and **RDBMS** implementations included 
-along with a Management HTTP API to be able to manage them remotely. Dynamic Validation Rules are cacheable locally giving them the same 
-performance profile as declarative attributes in code whose caches are only invalidated once they've been updated, upon which they'll come into
-immediate effect.
+along with a Management HTTP API which can be be managed remotely programmatically or from the [Validation Admin UI](/admin-ui-validation):
+
+<div class="block p-4 rounded shadow">
+    <a href="/admin-ui-validation">
+        <img src="/images/admin-ui/validation-category.png">
+    </a>
+</div>
+
+Dynamic Validation Rules are cacheable locally giving them the same performance profile as declarative attributes in code whose caches are only invalidated once they've been updated, upon which they'll come into immediate effect.
 
 Here's a [Modular Startup](/modular-startup) code you can drop into a ServiceStack Project to enable maintaining declarative Validation 
 Rules in your configured RDBMS:
@@ -499,7 +537,7 @@ namespace MyApp
         // Add support for dynamically generated db rules
         public void Configure(IWebHostBuilder builder) => builder
             .ConfigureServices(services => services.AddSingleton<IValidationSource>(c =>
-                new OrmLiteValidationSource(c.Resolve<IDbConnectionFactory>())))
+                new OrmLiteValidationSource(c.Resolve<IDbConnectionFactory>(), HostContext.LocalCache)))
             .ConfigureAppHost(appHost => {
                 appHost.Resolve<IValidationSource>().InitSchema();
             });
