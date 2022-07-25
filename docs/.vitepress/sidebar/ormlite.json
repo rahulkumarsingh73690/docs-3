@@ -21,6 +21,10 @@
       {
         "text": "Async APIs",
         "link": "/ormlite/async-apis"
+      },
+      {
+        "text": "Litestream",
+        "link": "/ormlite/litestream"
       }
     ]
   },

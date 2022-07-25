@@ -11,7 +11,11 @@
             "link": "/dotnet-new"
           },
           {
-            "text": "Blazor WASM Template",
+            "text": "Blazor WASM Tailwind",
+            "link": "/templates-blazor-tailwind"
+          },
+          {
+            "text": "Blazor WASM Bootstrap",
             "link": "/templates-blazor"
           },
           {

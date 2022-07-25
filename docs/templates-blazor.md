@@ -7,29 +7,33 @@ import { Icon } from "@iconify/vue"
     <div>
         <Icon icon="simple-icons:blazor" class="w-44 h-44 text-purple-600" />
     </div>
-    <h1>Blazor WebAssembly Template</h1>
+    <h1>Blazor WASM Bootstrap Template</h1>
 </div>
 
-The feature-rich Blazor WASM template is ideal for teams with strong C# skills building Line Of Business (LOB) applications.
+The feature-rich Blazor WASM Bootstrap template is ideal for teams with strong C# skills building Line Of Business (LOB) applications.
 Utilizing Blazor WebAssembly (WASM) with a ServiceStack backend yields an optimal frictionless [API First development model](/api-first-development) where UIs can bind directly to Typed DTOs whilst benefiting from ServiceStack's [structured error handling](/validation) & rich contextual form validation binding.
 
-By utilizing ServiceStack's [decoupled project structure](/physical-project-structure), combined with Blazor enabling C# on the client, we're able to get complete reuse of your APIs shared DTOs as-is to enable an end-to-end Typed API automatically free from any additional tooling or code-gen complexity.
-
-<iframe width="980" height="551" src="https://www.youtube.com/embed/TIgjMf_vtCI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe class="video-hd" src="https://www.youtube.com/embed/TIgjMf_vtCI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Getting Started
 
-If you have the [x dotnet tool](/dotnet-new) installed you can create a new Blazor WASM Project with:
+Customize and Download a new Blazor WASM Bootstrap project with your preferred project name:
 
-:::sh
-x new blazor-wasm ProjectName
-:::
-
-### Download new C# Blazor WASM Project
-
-Alternatively you can create & download a new Blazor Project with your preferred Project Name below:
+<h3 class="text-center">Download new C# Blazor WASM Project</h3>
 
 <BlazorTemplates class="pb-8" />
+
+Alternatively you can create & download a new Blazor Project with the [x dotnet tool](/dotnet-new):
+
+:::sh
+x new blazor-tailwind ProjectName
+:::
+
+## Optimal Development Workflow
+
+By utilizing ServiceStack's [decoupled project structure](/physical-project-structure), combined with Blazor enabling C# on the client, we're able to get 100% reuse of your APIs shared DTOs as-is to enable an end-to-end Typed API automatically free from any additional tooling or code-gen complexity.
+
+<iframe class="video-hd" src="https://www.youtube.com/embed/BcQqCzm4tK0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Api and ApiAsync methods
 
@@ -301,9 +305,15 @@ Below is an example of a CRUD Booking form [BookingsCrud/Create.razor](https://g
         BookingStartDate = DateTime.UtcNow,
     };
 
-    string[] VisibleFields => new[]{
-        nameof(request.Name), nameof(request.RoomType), nameof(request.RoomNumber), nameof(request.BookingStartDate),
-        nameof(request.BookingEndDate), nameof(request.Cost), nameof(request.Notes),
+    // Hide Error Summary Messages for Visible Fields which displays contextual validation errors
+    string[] VisibleFields => new[] {
+        nameof(request.Name), 
+        nameof(request.RoomType), 
+        nameof(request.RoomNumber), 
+        nameof(request.BookingStartDate),
+        nameof(request.BookingEndDate), 
+        nameof(request.Cost), 
+        nameof(request.Notes),
     };
 
     ApiResult<IdResponse> api = new();
@@ -867,65 +877,3 @@ as its route in the Blazor App, which when exists, CDNs give priority to over th
 It shares similar behavior as the home page where its pre-rendered content is initially loaded before it's replaced with the
 C# version once the Blazor App loads. The difference is that it prerenders "complete pages" for better SEO & TTFR.
 
-## ServiceStack.Blazor FileUpload Control
-
-The File Upload UI component used in our [File Blazor Demo](/locode/files-blazor) has been extracted into a reusable Blazor component you can utilize in your own apps, here's what it looks like on [file.locode.dev](https://file.locode.dev):
-
-![](/images/templates/fileupload-blazor-usage-example.png)
-
-It's a simple control that takes advantage of ServiceStack's declarative [Managed File Uploads](/locode/files) support to effortlessly enable multiple file uploads that can be declaratively added to any Request DTO, which only requires setting 2 properties:
-
-| Property         | Description                                                                                        |
-|------------------|----------------------------------------------------------------------------------------------------|
-| Request          | Request DTO object instance populated with into to be sent to your endpoint                        |
-| FilePropertyName | The name of the property that is used to reference your file, used with the `[UploadTo]` attribute |
-
-#### Example usage
-
-Below is an AutoQuery CRUD API example that references an upload location defined when configuring the [FileUploadFeature Plugin](/locode/files-upload-filesystem.md):
-
-```csharp
-public class CreateMyDtoWithFileUpload : ICreateDb<MyDtoWithFileUpload>, IReturn<IdResponse>
-{
-    [Input(Type="file"), UploadTo("fs")]
-    public string FilePath { get; set; }
-    
-    public string OtherData { get; set; }
-}
-
-public class QueryFileUpload : QueryDb<MyDtoWithFileUpload> {}
-
-public class MyDtoWithFileUpload
-{
-    [AutoIncrement]
-    public int Id { get; set; }
-    
-    public string FilePath { get; set; }
-    
-    public string OtherData { get; set; }
-}
-```
-
-When calling this API, the Managed File Uploads feature will upload the HTTP File Upload included in the API request to the configured **fs** upload location and populate the uploaded path to the `FilePath` Request DTO property. 
-
-The Blazor `FileUpload` client control can handle the [C# File Upload API Request](/locode/files.html#uploading-files-from-c) by giving it an instance of the Request DTO instance we want to send and the DTO property it should populate:
-
-```razor
-@page "/file-upload"
-<h3>FileUploadPage</h3>
-
-<FileUpload Request="request" FilePropertyName="@nameof(CreateMyDtoWithFileUpload.FilePath)" />
-
-@code {
-
-    // Any additional values should be populated 
-    // on the request object before the upload starts.
-    CreateMyDtoWithFileUpload request = new() {
-        OtherData = "Test"
-    };
-}
-```
-
-![](/images/templates/fileupload-blazor-example.png)
-
-The `FilePropertyName` matches the property name that is annotated by the `UploadTo` attribute. The `Request` is the instance of the Request DTO. This must match the related endpoint.

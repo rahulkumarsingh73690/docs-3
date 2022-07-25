@@ -3,6 +3,11 @@ slug: studio-users
 title: Studio - User Management
 ---
 
+::: warning Deprecated
+[ServiceStack Studio has been replaced](/releases/v6_2.html#retiring-studio) by [Admin UI](/admin-ui).
+Last supported versions: **ServiceStack v6.1** with **app v6.0.4**.
+:::
+
 A glimpse of the Studio's **Users** Module can be seen in the [Bookings CRUD demo](/autoquery-crud-bookings) who utilizes it to create **Employee** and **Manager** users. 
 
 ## User Admin Feature

@@ -44,8 +44,9 @@ We've put together a quick check list to help decide which templates we'd recomm
 | -           | - |
 | [Next.js](https://github.com/NetCoreTemplates/nextjs)   | If you prefer React |
 | [Vue SSG](https://github.com/NetCoreTemplates/vue-ssg)  | If you prefer Vue and SEO is important |
+| [Blazor Tailwind](/templates-blazor-tailwind)           | If you prefer a full C# Stack or are developing Line of Business (LOB) Apps |
 | [Vue SPA](https://github.com/NetCoreTemplates/vue-vite) | If you prefer Vue and happy to trade SEO benefits of SSG for a simpler template |
-| [Blazor WASM](/templates-blazor) | If you prefer a full C# Stack or are developing Line of Business (LOB) Apps |
+| [Blazor WASM](/templates-blazor)                        | If you prefer using Blazor WASM with Bootstrap CSS |
 
 Still not sure? familiarize yourself with their respective dev models by comparing their functionality equivalent TODOs MVC Examples:
 
@@ -87,12 +88,13 @@ All project templates supports CDN hostable UI assets and include the [necessary
 
 The optional `DEPLOY_CDN` secret lets you control whether to deploy your App's static `/wwwroot` assets to your GitHub Pages CDN by specifying the custom domain to use and is what all JamStack Live demos used to deploy a copy of their UIs to GitHub Pages CDN:
 
-| Project Source | GitHub Pages CDN | Digital Ocean Docker .NET API |
-| -              | - | - |
-| [nextjs](https://github.com/NetCoreTemplates/nextjs) | nextjs.jamstacks.net | nextjs-api.jamstacks.net |
-| [vue-ssg](https://github.com/NetCoreTemplates/vue-ssg) | vue-ssg.jamstacks.net | vue-ssg-api.jamstacks.net |
-| [vue-spa](https://github.com/NetCoreTemplates/vue-spa) | vue-spa.jamstacks.net | vue-spa-api.jamstacks.net |
-| [blazor-wasm](https://github.com/NetCoreTemplates/blazor-wasm) | blazor-wasm.jamstacks.net | blazor-wasm-api.jamstacks.net |
+| Project Source                                                         | GitHub Pages CDN              | Digital Ocean Docker .NET API     |
+| -                                                                      | -                             | -                                 |
+| [nextjs](https://github.com/NetCoreTemplates/nextjs)                   | nextjs.jamstacks.net          | nextjs-api.jamstacks.net          |
+| [vue-ssg](https://github.com/NetCoreTemplates/vue-ssg)                 | vue-ssg.jamstacks.net         | vue-ssg-api.jamstacks.net         |
+| [blazor-tailwind](https://github.com/NetCoreTemplates/blazor-tailwind) | blazor-tailwind.jamstacks.net | blazor-tailwind-api.jamstacks.net |
+| [vue-spa](https://github.com/NetCoreTemplates/vue-spa)                 | vue-spa.jamstacks.net         | vue-spa-api.jamstacks.net         |
+| [blazor-wasm](https://github.com/NetCoreTemplates/blazor-wasm)         | blazor-wasm.jamstacks.net     | blazor-wasm-api.jamstacks.net     |
 
 ## Blazor WebAssembly
 

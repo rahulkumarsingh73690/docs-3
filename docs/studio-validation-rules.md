@@ -3,6 +3,11 @@ slug: studio-validation-rules
 title: Studio - Validation Rules
 ---
 
+::: warning Deprecated
+[ServiceStack Studio has been replaced](/releases/v6_2.html#retiring-studio) by [Admin UI](/admin-ui).
+Last supported versions: **ServiceStack v6.1** with **app v6.0.4**.
+:::
+
 As an **Admin** you have access to the [DB Validation Source](https://forums.servicestack.net/t/autocrud-preview/8298/29?u=mythz) Admin UI which will let you add declarative Type and Property Validators for each Request DTO in Studio. This is enabled in NorthwindCrud in [Configure.Validation.cs](https://github.com/NetCoreApps/NorthwindCrud/blob/master/Configure.Validation.cs):
 
 ```csharp

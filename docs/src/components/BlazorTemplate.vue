@@ -24,10 +24,12 @@
                <div class="text-xl font-medium text-gray-700">Blazor WASM</div>
                <div class="flex justify-center h-8"></div>
                <span class="archive-name px-4 pb-2 text-blue-600 dark:text-indigo-400">{{ projectZip }}</span>
-               <div class="count mt-1 text-gray-400 text-sm"></div>
+               <div class="count mt-1 text-gray-400 text-sm">
+               </div>
             </div>
          </a>
       </div>
+      <a :href="`https://${templateName}.jamstacks.net`">{{templateName}}.jamstacks.net</a>
    </div>
 </section>   
 </div>
@@ -37,6 +39,7 @@ import { ref, computed } from 'vue'
 import { Icon } from '@iconify/vue'
 
 const props = defineProps<{ repo: string }>()
+let templateName = computed(() => props.repo.split('/')[1])
 
 const project = ref('MyApp')
 const projectZip = computed(() => (project.value || 'MyApp') + '.zip')

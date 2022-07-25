@@ -82,10 +82,14 @@
   {
       "text": "Features",
       "children": [
-          {
-              "text": "Auditing",
-              "link": "/locode/auditing"
-          }
+        {
+            "text": "Auditing",
+            "link": "/locode/auditing"
+        },
+        {
+            "text": "Advanced",
+            "link": "/locode/advanced"
+        }
       ]
   }
 ]

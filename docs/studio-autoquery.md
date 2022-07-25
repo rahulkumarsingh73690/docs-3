@@ -3,6 +3,11 @@ slug: studio-autoquery
 title: Studio - AutoQuery UI
 ---
 
+::: warning Deprecated
+[ServiceStack Studio has been replaced](/releases/v6_2.html#retiring-studio) by [Locode](/locode).
+Last supported versions: **ServiceStack v6.1** with **app v6.0.4**.
+:::
+
 Studio uses the rich declarative metadata of AutoQuery & Crud Services to infer the **data model** that each AutoQuery Service operates on and the **Operation Type** they provide. As a result it can logically group each Service around the Data Model they operate on to provide a more intuitive & natural UI for each of the different AutoQuery/CRUD operation types.
 
 ![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/release-notes/v5.9/autoquery-noauth.png)

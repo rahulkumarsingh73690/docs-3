@@ -3,6 +3,11 @@ slug: studio
 title: ServiceStack Studio
 ---
 
+::: warning Deprecated
+[ServiceStack Studio has been replaced](/releases/v6_2.html#retiring-studio) by [Admin UI](/admin-ui).
+Last supported versions: **ServiceStack v6.1** with **app v6.0.4**.
+:::
+
 **ServiceStack Studio**  is a capability-based UI to manage multiple remote ServiceStack instances from either a Chromium Desktop App or cross-platform .NET Core Web App. 
 
 The richer metadata in ServiceStack Services allows Studio to logically group Services around Data Models, enabling its high-level semantic features like its native data-grid like UX over all AutoQuery Services to quickly discover, search, create, update and delete entities based on the available AutoQuery APIs and whether Authenticated Users have access to them.

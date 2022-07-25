@@ -86,7 +86,7 @@ You can Sign In with any of the users in the [Blazor WASM Sign In](https://blazo
 | manager@email.com  | p@55wOrd | Manager  |
 | employee@email.com | p@55wOrd | Employee |
 
-If signed in with the **Admin** User and the [Admin Users](/admin-users) plugin is configured:
+If signed in with the **Admin** User and the [Admin Users](/admin-ui-users) plugin is configured:
 
 ```csharp
 Plugins.Add(new AdminUsersFeature());

@@ -42,7 +42,7 @@ Like the [caching providers](/caching) the `async` Auth Repositories makes use o
 
 ### Auth Repository Admin APIs 
 
-If you're interested in implementing a User Management feature in your own Apps you may want to re-use the Admin APIs in the [User Admin Feature](/admin-users) which enable Service access to many User Auth Repository features.
+If you're interested in implementing a User Management feature in your own Apps you may want to re-use the Admin APIs in the [User Admin Feature](/admin-ui-users) which enable Service access to many User Auth Repository features.
 
 ### Mix in Auth Repository
 

@@ -218,7 +218,7 @@
 - ##### Plugins
     - [Overview](/plugins)
     - [Open API](/openapi)
-    - [User Admin Feature](/admin-users)
+    - [User Admin Feature](/admin-ui-users)
     - [CORS Feature](/corsfeature)
     - [Proxy Feature](/proxy-feature)
     - [Request logger](/request-logger)

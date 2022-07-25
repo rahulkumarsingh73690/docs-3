@@ -25,7 +25,7 @@
     "children": [
       {
           "text": "Latest Release Notes",
-          "link": "/releases/v6_1"
+          "link": "/releases/v6_2"
       },
       {
           "text": "Release Notes History",
@@ -123,24 +123,28 @@
         "link": "/api-explorer"
       },
       {
+        "text": "Locode",
+        "link": "/locode/"
+      },
+      {
         "text": "Admin UI",
         "link": "/admin-ui"
       },
       {
-        "text": "Studio",
-        "link": "/studio"
+        "text": "Admin Manage Users UI",
+        "link": "/admin-ui-users"
       },
       {
-        "text": "Studio - User Management",
-        "link": "/studio-users"
+        "text": "Admin DB Validation UI",
+        "link": "/admin-ui-validation"
       },
       {
-        "text": "Studio - AutoQuery UI",
-        "link": "/studio-autoquery"
+        "text": "Admin Logging & Profiling UI",
+        "link": "/admin-ui-profiling"
       },
       {
-        "text": "Studio - DB Validation Rules",
-        "link": "/studio-validation-rules"
+        "text": "Admin UI Features",
+        "link": "/admin-ui-features"
       }
     ]
   },
@@ -652,7 +656,7 @@
       },
       {
         "text": "User Admin Feature",
-        "link": "/admin-users"
+        "link": "/admin-ui-users"
       },
       {
         "text": "CORS Feature",

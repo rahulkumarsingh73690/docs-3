@@ -3,122 +3,59 @@ slug: admin-ui
 title: Admin UI
 ---
 
-Admin UI provides user management functionality at `/admin-ui` path when the `AdminUsersFeature` plugin is added to your application.
+The Admin UI contains a suite of Admin tools providing a number of productivity features ranging from Managing Users and DB Validation Rules to gaining unprecedented insights into Live running Apps with in-depth Request Logging & Profiling where you'll be able to observe your App's behavior in real-time.
 
-## Installation
+The [Admin UI](/admin-ui) is built into all ServiceStack Apps, accessible to [Admin Users](/debugging#admin-role) from:
 
-```csharp
-Plugins.Add(new AdminUsersFeature());
-```
+<div class="text-center pb-3">
+    <h3 class="text-4xl text-indigo-800">/admin-ui</h3>
+</div>
 
-<a href="https://blazor-wasm-api.jamstacks.net/admin-ui">
-    <h3 class="text-center font-medium text-3xl mb-3">/admin-ui</h3>
+## Dashboard
+
+On first access you're greeted with the Admin dashboard showing high-level overview stats on the number and type of APIs your App has as well as internal stats counters surfaced right on your Dashboard where they can provide valuable insights into the health of different features at a glance:
+
+![](/images/admin-ui/dashboard-features.png)
+
+### Advertized features
+
+As Admin is a capability-based UI it only shows the stats and features your App has enabled. To aid in discovery the dashboard now includes a light switch of available Admin features with a link to [Admin UI Feature Docs](/admin-ui-features), providing a summary of each Admin UI component and instructions on how to enable them.
+
+## Admin UI Features
+
+Explore the available Admin UIs to learn more about each of their capabilities:
+
+### [DB Validation UI](/admin-ui-validation)
+
+Leverages the existing Declarative Validation infrastructure to enable dynamically managing Request DTO Type and Property Validators from a RDBMS data source
+
+<a href="/admin-ui-validation">
     <div class="block p-4 rounded shadow hover:shadow-lg">
-        <img src="/images/admin-ui/dashboard.png">
+        <img src="/images/admin-ui/admin-ui-validation.png">
     </div>
 </a>
 
-By default, it also shows some simple API stats on your Admin UI dashboard, linked to the [API Explorer](./api-explorer.md).
+### [Managing Users UI](/admin-ui-users)
 
-The Admin UI was designed with room to grow. You can let us know what features you would find most valuable on our [GitHub Discussions](https://github.com/ServiceStack/Discuss/discussions/2).
+Containing user management functionality for creating & modifying users, assigning Roles & Permissions, locking or updating passwords:
 
-::: info
-An `IAuthRepository` is required to be a registered dependency to use the `AdminUsersFeature` plugin.
-:::
+<a href="/admin-ui-users">
+    <div class="block p-4 rounded shadow hover:shadow-lg">
+        <img src="/images/admin-ui/users.png">
+    </div>
+</a>
 
-## Managing Users
+### [Profiling & Logging UI](/admin-ui-profiling)
 
-By default, the Add and Edit Users forms contains the default layout of common properties in [UserAuth.cs](https://github.com/ServiceStack/ServiceStack/blob/master/src/ServiceStack/Auth/UserAuth.cs)
+Enables invaluable observability into your App, from being able to quickly inspect and browse incoming requests, to tracing their behavior:
 
-<div class="flex justify-center py-8">
-    <a href="https://blazor-wasm-api.jamstacks.net/admin-ui/users?edit=2">
-        <img src="/images/admin-ui/users-edit-default.png" style="max-width:800px;">
-    </a>
-</div>
+<a href="/admin-ui-profiling">
+    <div class="block p-4 rounded shadow hover:shadow-lg">
+        <img src="/images/admin-ui/admin-ui-logging.png">
+    </div>
+</a>
 
-## Customization
 
-To customize this user interface to accommodate custom properties, the `UserFormLayout` needs to be overridden.
+## Feedback
 
-For example, below we have a custom `UserAuth` called `AppUser` with additional properties.
-
-```csharp
-// Custom User Table with extended Metadata properties
-public class AppUser : UserAuth
-{
-    public Department Department { get; set; }
-    public string? ProfileUrl { get; set; }
-    public string? LastLoginIp { get; set; }
-
-    public bool IsArchived { get; set; }
-    public DateTime? ArchivedDate { get; set; }
-
-    public DateTime? LastLoginDate { get; set; }
-}
-
-public enum Department
-{
-    None,
-    Marketing,
-    Accounts,
-    Legal,
-    HumanResources,
-}
-```
-
-The `AdminUsersFeature` has multiple fiends that can be used to customize the UI including.
-
-| Property Name             | Description                                                        |
-|---------------------------|--------------------------------------------------------------------|
-| `QueryUserAuthProperties` | Columns visible in query results for users.                        |
-| `QueryMediaRules`         | Which columns *start* appearing at different screen sizes.         |
-| `UserFormLayout`          | Control which fields are used for Create/Edit and their placement. |
-
-### Custom User Form Layout
-
-Similar to the [API Explorer](./api-explorer.md#formlayout) `FormLayout` customization, `UserFormLayout` is used to control placement and details about individual fields.
-
-```csharp
-appHost.Plugins.Add(new ServiceStack.Admin.AdminUsersFeature {
-    // Show custom fields in Search Results
-    QueryUserAuthProperties = new() {
-        nameof(AppUser.Id),
-        nameof(AppUser.Email),
-        nameof(AppUser.DisplayName),
-        nameof(AppUser.Department),
-        nameof(AppUser.CreatedDate),
-        nameof(AppUser.LastLoginDate),
-    },
-
-    QueryMediaRules = new()
-    {
-        MediaRules.ExtraSmall.Show<AppUser>(x => new { x.Id, x.Email, x.DisplayName }),
-        MediaRules.Small.Show<AppUser>(x => x.Department),
-    },
-
-    // Add Custom Fields to Create/Edit User Forms
-    FormLayout = new() {
-        Input.For<AppUser>(x => x.Email, x => x.Type = Input.Types.Email),
-        Input.For<AppUser>(x => x.DisplayName),
-        Input.For<AppUser>(x => x.UserName),
-        Input.For<AppUser>(x => x.Company,      c => c.FieldsPerRow(2)),
-        Input.For<AppUser>(x => x.Department,   c => c.FieldsPerRow(2)),
-        Input.For<AppUser>(x => x.PhoneNumber,  c => c.Type = Input.Types.Tel),
-        Input.For<AppUser>(x => x.Nickname,     c => {
-            c.Help = "Public alias (3-12 lower alpha numeric chars)";
-            c.Pattern = "^[a-z][a-z0-9_.-]{3,12}$";
-        }),
-        Input.For<AppUser>(x => x.ProfileUrl,   c => c.Type = Input.Types.Url),
-        Input.For<AppUser>(x => x.IsArchived,   c => c.FieldsPerRow(2)),
-        Input.For<AppUser>(x => x.ArchivedDate, c => c.FieldsPerRow(2)),
-    }
-});
-```
-
-Enabling the use of custom properties as well as formatting for ease of use. `UserFormLayout` updates the `Create` and `Edit` screens in the Admin UI.
-
-<div class="flex justify-center py-8">
-    <a href="https://blazor-wasm-api.jamstacks.net/admin-ui/users?edit=2">
-        <img src="/images/admin-ui/users-edit-custom.png" style="max-width:800px;">
-    </a>
-</div>
+The Admin UI was designed with room to grow. Please let us know what other features you would like to see on our [GitHub Discussions](https://github.com/ServiceStack/Discuss/discussions/2).
