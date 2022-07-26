@@ -18,7 +18,7 @@ This also happens to be the cheapest to place to host their static files, taking
 
 Having achieved the best architecture for delivering max value and performance, the last expensive vital component used in most Web Apps is hosting of their expensive managed databases. Despite most RDBMS's being OSS and free of licensing costs, major cloud companies continue to charge artificially high hosting costs to provide redundant hosting of App data. The effect of which adds an artificial barrier to entry discouraging new Indie developers from building & hosting their dream Apps that could form self sustaining business models that should ideally be accessible to anyone with access to a Computer with the Internet.
 
-If we solve this, Indie developers can take advantage of our [Free Licenses](https://servicestack.net/free) for experimenting and iterating on building their dream Apps for a few $'s a month, instead of their prohibitive recommended setup costing $100's /month.
+If we solve this, Individual developers can take advantage of our [Free Licenses](https://servicestack.net/free) for experimenting and iterating on building their dream Apps for a few $'s a month, instead of their prohibitive recommended setup costing $100's /month.
 
 <div id="litestream-interest" class="relative bg-white py-4 mt-12">
     <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
