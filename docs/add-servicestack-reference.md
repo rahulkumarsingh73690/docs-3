@@ -639,7 +639,7 @@ The Add ServiceStack Reference dialog just takes the URL provided and requests t
 In order for Add ServiceStack Reference to work consistently across all supported languages without .NET semantic namespaces, DTOs includes an additional restriction due to the semantic differences and limitations in different languages there are some limitations of [highly-discouraged bad practices](http://stackoverflow.com/a/10759250/85785) that's not supported across all languages including:
 
 #### All DTO Type Names must be unique
-ServiceStack only requires Request DTO's to be unique, but some languages require all DTO names to be unique.
+ServiceStack only requires Request DTO's to be unique, but non .NET languages also require all DTO names to be unique.
 
 #### No `object` or `Interface` properties
 It's not possible to generate typed metadata and type information for deserializing unknown types.
