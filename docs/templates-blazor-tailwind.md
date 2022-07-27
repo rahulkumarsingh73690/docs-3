@@ -16,7 +16,7 @@ import { Icon } from "@iconify/vue"
     </h2>
 </div>
 
-The feature-rich Blazor WASM Tailwind template us ideal for teams with strong C# skills building Line Of Business (LOB) applications who prefer utilizing Tailwind's modern utility-first CSS design system to create beautiful, instant-loading Blazor WASM Apps.
+The feature-rich Blazor WASM Tailwind template is ideal for teams with strong C# skills building Line Of Business (LOB) applications who prefer utilizing Tailwind's modern utility-first CSS design system to create beautiful, instant-loading Blazor WASM Apps.
 
 <a href="https://blazor-tailwind.jamstacks.net">
     <div class="block flex justify-center shadow hover:shadow-lg rounded py-1">
