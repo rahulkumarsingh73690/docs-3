@@ -6,6 +6,8 @@ title: Redis Vue Desktop
 [Redis Vue](https://sharpscript.net/sharp-apps/redis#redis-vue) is a simple user-friendly [Vue Desktop App](https://www.vuedesktop.com) for browsing data in Redis servers which takes advantages of the complex
 type conventions built in the ServiceStack.Redis Client to provide a rich, human-friendly UI for navigating related datasets, enabling a fast and fluid browsing experience for your Redis servers.
 
+[![](/images/app/app-redis.png)](https://sharpscript.net/sharp-apps/redis)
+
 Install [.NET SDK](https://dotnet.microsoft.com/download) and run [install/app.ps1](https://servicestack.net/install/app.ps1) to install the `app` dotnet tool:
 
 ```
