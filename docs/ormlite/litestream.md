@@ -10,13 +10,13 @@ title: Litestream
     </a>
 </h2>
  
-One of ServiceStack's primary goals is delivering great value and performance, attributes exemplified in all modern jamstacks.net templates which are maximally designed to deliver the best performance possible in a .NET App by adopting a [Jamstack architecture](https://jamstack.org), enabling redundant hosting of their decoupled UI's on inexpensive CDN edge caches - most optimal place to deliver best performance. 
+One of ServiceStack's primary goals is delivering great value and performance, attributes exemplified in all modern jamstacks.net templates which are maximally designed to deliver ultimate performance for a .NET App by adopting a [Jamstack architecture](https://jamstack.org), enabling redundant hosting of their decoupled UI's on inexpensive CDN edge caches - most optimal place to deliver best performance. 
 
-This also happens to be the cheapest to place to host their static files, taking load away from more expensive .NET App Servers and move them to free Cloudflare or GitHub CDNs, which our Jamstack Live Demos take advantage of to enable their [**$0.40 /mo** TCO](https://jamstacks.net/posts/hosting) for hosting their .NET Docker Apps which are only needed to serve the JSON APIs used to power their Jamstack UIs.
+This also happens to be the cheapest to place to host its static files, taking load away from more expensive .NET App Servers and move them to free Cloudflare or GitHub CDNs, which all Jamstack Live Demos take advantage of to enable their [**$0.40 /mo** TCO](https://jamstacks.net/posts/hosting) for hosting their .NET Docker Apps which are only needed to serve the JSON APIs used to power their Jamstack UIs.
 
 ### Expensive Managed Databases
 
-Having achieved the ideal architecture for delivering max value and performance, the last expensive vital component used in most Web Apps is hosting of their expensive managed databases. Despite most RDBMS's being OSS and free of licensing costs, major cloud companies continue to charge artificially high hosting costs to provide redundant hosting of App data. The effect of which adds an artificial barrier to entry discouraging new Indie developers from building & hosting their dream Apps that could form self sustaining business models that should ideally be accessible to anyone with access to a Computer with the Internet.
+Having achieved the ideal architecture for max value and performance, the last expensive vital component used in most Web Apps is hosting of their expensive managed databases. Despite most RDBMS's being OSS and free of licensing costs, major cloud companies continue to charge artificially high hosting costs to provide redundant hosting of App data. The effect of which adds an artificial barrier to entry discouraging new Indie developers from building & hosting their dream Apps that could form self sustaining business models that should ideally be accessible to anyone with access to a Computer with the Internet.
 
 If we solve this, Individual developers can take advantage of our [Free Licenses](https://servicestack.net/free) for experimenting and iterating on building their dream Apps for a few $'s a month, instead of their prohibitive recommended setup costing $100's /month.
 
